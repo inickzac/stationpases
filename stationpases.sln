@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30204.135
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "stationpases", "stationpases\stationpases.csproj", "{D3021025-F95C-46FA-A1A6-D4675F8A132F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D3021025-F95C-46FA-A1A6-D4675F8A132F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3021025-F95C-46FA-A1A6-D4675F8A132F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3021025-F95C-46FA-A1A6-D4675F8A132F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3021025-F95C-46FA-A1A6-D4675F8A132F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1561AACD-0368-4765-BDE8-8DCEA42E8000}
+	EndGlobalSection
+EndGlobal
