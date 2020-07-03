@@ -1,4 +1,6 @@
-﻿using System;
+﻿using stationpases.Views;
+using stationpases.VMs;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,5 +15,26 @@ namespace stationpases
     /// </summary>
     public partial class App : Application
     {
+        public DisplayRootRegistry displayRootRegistry = new DisplayRootRegistry();
+
+
+        public App()
+        {
+           // displayRootRegistry.RegisterWindowType<MainWindowVM, Views.MainWindowView>();
+            displayRootRegistry.RegisterWindowType<AddVisitorVM, AddVisitorWindow>();
+        }
+
+        protected override async void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+
+            var MainWindowVM = new AddVisitorVM();
+
+            await displayRootRegistry.ShowModalPresentation(MainWindowVM);
+
+            Shutdown();
+        }
+
+
     }
 }
