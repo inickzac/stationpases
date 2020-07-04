@@ -1,4 +1,5 @@
-﻿using stationpases.Views;
+﻿using stationpases.Model;
+using stationpases.Views;
 using stationpases.VMs;
 using System;
 using System.Collections.Generic;
@@ -25,7 +26,7 @@ namespace stationpases
         }
 
         protected override async void OnStartup(StartupEventArgs e)
-        {
+        {        
             base.OnStartup(e);
 
             var MainWindowVM = new AddVisitorVM();

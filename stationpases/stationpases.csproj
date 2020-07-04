@@ -64,6 +64,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\DBInitialaizer.cs" />
+    <Compile Include="Model\Department.cs" />
+    <Compile Include="Model\Document.cs" />
+    <Compile Include="Model\DocumentType.cs" />
+    <Compile Include="Model\Employee.cs" />
+    <Compile Include="Model\SinglePass.cs" />
+    <Compile Include="Model\Visitor.cs" />
     <Compile Include="Views\AddVisitorWindow.xaml.cs">
       <DependentUpon>AddVisitorWindow.xaml</DependentUpon>
     </Compile>
