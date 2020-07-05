@@ -21,16 +21,15 @@ namespace stationpases
 
         public App()
         {
-           // displayRootRegistry.RegisterWindowType<MainWindowVM, Views.MainWindowView>();
+            // displayRootRegistry.RegisterWindowType<MainWindowVM, Views.MainWindowView>();
             displayRootRegistry.RegisterWindowType<AddVisitorVM, AddVisitorWindow>();
+            displayRootRegistry.RegisterWindowType<OneValueMenageDataVM, MenageSimpleData>();
         }
 
         protected override async void OnStartup(StartupEventArgs e)
-        {        
+        {
             base.OnStartup(e);
-
             var MainWindowVM = new AddVisitorVM();
-
             await displayRootRegistry.ShowModalPresentation(MainWindowVM);
 
             Shutdown();

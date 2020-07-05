@@ -12,7 +12,7 @@ namespace stationpases.Model
         protected override void Seed(StationDBContext context)
         {
 
-         context.DocumentTypes.Add( new DocumentType { Type = "Паспорт" });
+         context.DocumentTypes.Add( new DocumentType { Value = "Паспорт" });
 
 
 
@@ -22,7 +22,7 @@ namespace stationpases.Model
                 Series = "AB",
                 Number = "4455",
                 IssuingAuthority = "КГБ",
-                DocumentType = new DocumentType { Type="rrr"}
+                DocumentType = new DocumentType { Value="rrr"}
             };
 
 
@@ -40,7 +40,7 @@ namespace stationpases.Model
 
             var Employee = new Employee
             {
-                Department = new Department { Name = "Отдел продаж" },
+                Department = new Department { Value = "Отдел продаж" },
                 Name = "Ира",
                 LastName = "Попа",
                 Position = "Инженер"           
@@ -48,7 +48,7 @@ namespace stationpases.Model
 
             var Employee2 = new Employee
             {
-                Department = new Department { Name = "Отдел сбыта" },
+                Department = new Department { Value = "Отдел сбыта" },
                 Name = "дима",
                 LastName = "П",
                 Position = "Исм"

@@ -50,9 +50,10 @@ namespace stationpases.Model
             throw new NotImplementedException();
         }
 
-        public void save()
+        public void Save()
         {
             (Application.Current as App).db.SaveChanges();
         }
+     
     }
 }

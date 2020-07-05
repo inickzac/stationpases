@@ -1,0 +1,19 @@
+﻿<Window x:Class="stationpases.Views.MenageSimpleData"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:stationpases.Views"
+        mc:Ignorable="d"
+        Title="{Binding  ValueName}" Height="111.161" Width="177.952">
+    <StackPanel>
+        <StackPanel>
+            <TextBlock Text="{Binding ValueName}"></TextBlock>
+            <TextBox Text="{Binding Value}"></TextBox>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" MinHeight="30" >
+            <Button Content="Сохранить" Click="Button_Click"></Button>
+            <Button Content="Отмена" Margin="20,0,0,0"></Button>
+        </StackPanel>
+    </StackPanel>
+</Window>

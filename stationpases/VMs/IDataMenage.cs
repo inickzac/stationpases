@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 namespace stationpases.VMs
 {
     interface IDataMenage
-    {
-        void save();
+    {     
+        void Save();
         void Delete();
     
     }

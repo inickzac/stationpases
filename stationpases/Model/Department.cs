@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace stationpases.Model
 {
-    public class Department : VMContext, INotifyPropertyChanged
+    public class Department : VMContext, INotifyPropertyChanged, IOneValueMenageData
     {
         int id;
-        string name;
+        string value;
 
         public Department()
         {
@@ -23,7 +23,18 @@ namespace stationpases.Model
         public int Id { get => id; set { id = value; OnPropertyChanged(); } }
         [Required]
         [MaxLength(50)]
-        public string Name { get => name; set { name = value; OnPropertyChanged(); } }
+        public string Value { get => value; set { this.value = value; OnPropertyChanged(); } }
         public virtual ICollection<Employee> Documents { get; set; }
+        public string ValueName { get => throw new NotImplementedException();  }
+
+        public void Delete()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Save()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

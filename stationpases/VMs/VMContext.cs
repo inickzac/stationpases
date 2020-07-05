@@ -52,6 +52,7 @@ namespace stationpases.VMs
 
         private RelayCommand openModalWindow;
         private RelayCommand saveInBD;
+        private RelayCommand saveLocal;
 
         public RelayCommand OpenModalWindow
         {
@@ -60,7 +61,10 @@ namespace stationpases.VMs
                 return openModalWindow ??
                   (openModalWindow = new RelayCommand(async obj =>
                   {
-
+                    if(obj is IOneValueMenageData)
+                      {
+                          await displayRootRegistry.ShowModalPresentation(new OneValueMenageDataVM((IOneValueMenageData)obj));
+                      }
                   }));
             }
         }
@@ -71,10 +75,21 @@ namespace stationpases.VMs
                 return saveInBD ??
                   (saveInBD = new RelayCommand(obj =>
                   {
-                      (obj as IDataMenage).save();
+                      (obj as IDataMenage).Save();
                   }));
             }
         }
 
+        public  RelayCommand SaveLocal
+        {
+            get
+            {
+                return saveInBD ??
+                  (saveInBD = new RelayCommand(obj =>
+                  {
+                      (obj as IDataMenage).Save();
+                  }));
+            }
+        }
     }
 }

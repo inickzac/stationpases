@@ -75,8 +75,13 @@
       <DependentUpon>AddVisitorWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\DisplayRootRegistry.cs" />
+    <Compile Include="Views\MenageSimpleData.xaml.cs">
+      <DependentUpon>MenageSimpleData.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VMs\OneValueMenageDataVM.cs" />
     <Compile Include="VMs\AddVisitorVM.cs" />
     <Compile Include="VMs\IDataMenage.cs" />
+    <Compile Include="VMs\IOneValueMenageData.cs" />
     <Compile Include="VMs\VMContext.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -91,6 +96,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\AddVisitorWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MenageSimpleData.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
