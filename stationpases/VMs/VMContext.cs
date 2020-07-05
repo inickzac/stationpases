@@ -71,7 +71,7 @@ namespace stationpases.VMs
                 return saveInBD ??
                   (saveInBD = new RelayCommand(obj =>
                   {
-
+                      (obj as IDataMenage).save();
                   }));
             }
         }

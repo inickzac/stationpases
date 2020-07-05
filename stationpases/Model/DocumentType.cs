@@ -14,10 +14,17 @@ namespace stationpases.Model
         int id;
         string type;
 
+        public DocumentType()
+        {
+            Documents = new List<Document>();
+        }
+
         public int Id { get => id; set { id = value; OnPropertyChanged(); } }
         [Required]
         [MaxLength(100)]
         public string Type { get => type; set { type = value; OnPropertyChanged(); } }
+
+        public virtual IList<Document> Documents {get; set;}
 
     }
 }

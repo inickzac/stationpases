@@ -6,35 +6,20 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
 using System.Runtime.Remoting.Contexts;
+using System.Windows;
+using System.Collections.ObjectModel;
 
 namespace stationpases.VMs
 {
     class AddVisitorVM
     {
-        StationDBContext StationDBContext = new StationDBContext();
-        DocumentType DocumentType = new DocumentType { Type = "bilet" };
+        public StationDBContext db { get; set; } = (Application.Current as App).db;
+        public Visitor Visitor { get; set; }
 
         public AddVisitorVM()
         {
-            StationDBContext.DocumentTypes.Add(DocumentType);
-            StationDBContext.SaveChanges();
-
-            var Visitor = StationDBContext.Visitors.FirstOrDefault();
-            string vd = Visitor.Document.DocumentType.Type;
-            Visitor.Document.DocumentType = new DocumentType {Type="2" };
-            var v2 = Visitor.Document.DocumentType.Type;
-
-
-
-
-
-
-
-
-            StationDBContext.Dispose();
-
-
-            
+            Visitor = db.Visitors.FirstOrDefault();
+            Document.documentTypes = new ObservableCollection<DocumentType>(db.DocumentTypes);
 
         }
     }

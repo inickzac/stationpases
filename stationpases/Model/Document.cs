@@ -1,12 +1,15 @@
 ﻿using stationpases.VMs;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace stationpases.Model
 {
@@ -18,7 +21,10 @@ namespace stationpases.Model
         DateTime dateOfIssue;
         DocumentType documentType;
         string issuingAuthority;
+        StationDBContext db = (Application.Current as App).db;
+        public static ObservableCollection<DocumentType> documentTypes;     
 
+        [Key, ForeignKey("Visitor")]
         public int Id { get => id; set { id = value; OnPropertyChanged(); } }
         [Required]
         [MaxLength(50)]
@@ -33,6 +39,12 @@ namespace stationpases.Model
         [Required]
         [MaxLength(50)]
         public string IssuingAuthority { get => issuingAuthority; set { issuingAuthority = value; OnPropertyChanged(); } }
-  
+
+        public virtual Visitor Visitor { get; set; }
+        [NotMapped]
+        public ObservableCollection<DocumentType> DocumentTypes
+        {
+            get => documentTypes; set { documentTypes = value; OnPropertyChanged(); }
+        }
     }
 }

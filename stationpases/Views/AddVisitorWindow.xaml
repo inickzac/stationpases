@@ -7,6 +7,35 @@
         mc:Ignorable="d"
         Title="AddVisitorWindow" Height="450" Width="800">
     <Grid>
-        
+        <StackPanel DataContext="{Binding Visitor}">
+            <StackPanel >
+                <TextBlock Text="Имя"/>
+                <TextBox Text="{Binding Name}"/>
+            </StackPanel>
+            <StackPanel>
+                <TextBlock Text="Фамилия"/>
+                <TextBox Text="{Binding LastName}"/>
+            </StackPanel>
+            <StackPanel>
+                <TextBlock Text="Отчество"/>
+                <TextBox Text="{Binding Patronymic}"/>
+            </StackPanel>
+            <Expander Header="Документ" IsExpanded="True" DataContext="{Binding Document}">
+                <StackPanel>
+                    <StackPanel>
+                        <TextBlock Text="Серия"/>
+                        <TextBox Text="{Binding Series}"/>
+                    </StackPanel>
+                    <StackPanel>
+                        <TextBlock Text="Номер"/>
+                        <TextBox Text="{Binding Number}"/>
+                    </StackPanel>
+                    <StackPanel>
+                        <ComboBox ItemsSource="{Binding DocumentTypes}" DisplayMemberPath="Type" SelectedItem="{Binding DocumentType}"></ComboBox>
+                    </StackPanel>
+                </StackPanel>
+            </Expander>
+            <Button MinHeight="30" Command="{Binding SaveInBD}" CommandParameter="{Binding}"></Button>
+        </StackPanel>
     </Grid>
 </Window>

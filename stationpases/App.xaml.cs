@@ -17,7 +17,7 @@ namespace stationpases
     public partial class App : Application
     {
         public DisplayRootRegistry displayRootRegistry = new DisplayRootRegistry();
-
+        public StationDBContext db = new StationDBContext();
 
         public App()
         {
@@ -36,6 +36,11 @@ namespace stationpases
             Shutdown();
         }
 
+        protected override void OnExit(ExitEventArgs e)
+        {
+            db.Dispose();
+            base.OnExit(e);
+        }
 
     }
 }

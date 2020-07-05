@@ -11,20 +11,30 @@ namespace stationpases.Model
     {
         protected override void Seed(StationDBContext context)
         {
-            var Visitor = new Visitor
+
+         context.DocumentTypes.Add( new DocumentType { Type = "Паспорт" });
+
+
+
+            var Document = new Document
             {
-                Document = new Document
-                {
-                    DateOfIssue = DateTime.Now,
-                    Series = "AB",
-                    Number = "4455",
-                    IssuingAuthority = "КГБ",
-                    DocumentType = new DocumentType { Type = "Паспорт" }
-                },
-                LastName = "pool",
-                Name = "dim",
+                DateOfIssue = DateTime.Now,
+                Series = "AB",
+                Number = "4455",
+                IssuingAuthority = "КГБ",
+                DocumentType = new DocumentType { Type="rrr"}
+            };
+
+
+
+              var Visitor = new Visitor
+              {
+                 Document = Document,
+                LastName = "Василий",
+                Name = "Пупкин",
                 PlaceOfWork = "ooo monreal",
-                Position = "директор"
+                Position = "директор",
+                Patronymic="Васильевич"
 
             };
 
@@ -33,10 +43,16 @@ namespace stationpases.Model
                 Department = new Department { Name = "Отдел продаж" },
                 Name = "Ира",
                 LastName = "Попа",
-                Position = "Инженер"
+                Position = "Инженер"           
             };
 
-
+            var Employee2 = new Employee
+            {
+                Department = new Department { Name = "Отдел сбыта" },
+                Name = "дима",
+                LastName = "П",
+                Position = "Исм"
+            };
 
             context.SinglePasses.Add(new SinglePass
             {
@@ -48,6 +64,15 @@ namespace stationpases.Model
                 SinglePassIssued = Employee
             });
 
+            context.SinglePasses.Add(new SinglePass
+            {
+                PurposeOfIssuance = "Пр",
+                DateOfIssue = DateTime.Now,
+                ValidUntil = DateTime.Now,
+                Visitor = Visitor,
+                Accompanying = Employee2,
+                SinglePassIssued = Employee2
+            });
 
             context.SaveChanges();
 
