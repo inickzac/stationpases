@@ -13,7 +13,7 @@ namespace stationpases.VMs
 {
     public class VMContext
     {
-        DisplayRootRegistry displayRootRegistry = (Application.Current as App).displayRootRegistry;
+      public  DisplayRootRegistry displayRootRegistry = (Application.Current as App).displayRootRegistry;
 
         public class RelayCommand : ICommand
         {
@@ -51,8 +51,8 @@ namespace stationpases.VMs
         }
 
         private RelayCommand openModalWindow;
-        private RelayCommand saveInBD;
-        private RelayCommand saveLocal;
+        //
+        //private RelayCommand saveLocal;
 
         public RelayCommand OpenModalWindow
         {
@@ -68,28 +68,6 @@ namespace stationpases.VMs
                   }));
             }
         }
-        public RelayCommand SaveInBD
-        {
-            get
-            {
-                return saveInBD ??
-                  (saveInBD = new RelayCommand(obj =>
-                  {
-                      (obj as IDataMenage).Save();
-                  }));
-            }
-        }
-
-        public  RelayCommand SaveLocal
-        {
-            get
-            {
-                return saveInBD ??
-                  (saveInBD = new RelayCommand(obj =>
-                  {
-                      (obj as IDataMenage).Save();
-                  }));
-            }
-        }
+     
     }
 }

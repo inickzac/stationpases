@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace stationpases.Model
 {
-    public class Department : VMContext, INotifyPropertyChanged, IOneValueMenageData
+    public class Department : VMContext, INotifyPropertyChanged
     {
         int id;
         string value;

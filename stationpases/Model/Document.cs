@@ -22,7 +22,7 @@ namespace stationpases.Model
         DocumentType documentType;
         string issuingAuthority;
         StationDBContext db = (Application.Current as App).db;
-        public static ObservableCollection<DocumentType> documentTypes;     
+        public static ObservableCollection<DocumentType> documentTypes;
 
         [Key, ForeignKey("Visitor")]
         public int Id { get => id; set { id = value; OnPropertyChanged(); } }
@@ -46,5 +46,20 @@ namespace stationpases.Model
         {
             get => documentTypes; set { documentTypes = value; OnPropertyChanged(); }
         }
+        private RelayCommand getDocumentTypeSettings;
+        public RelayCommand GetDoocumentTypeSettings
+        {
+            get
+            {
+                return getDocumentTypeSettings ??
+                  (getDocumentTypeSettings = new RelayCommand(async obj =>
+                  {
+                      if (obj != null) await displayRootRegistry.ShowModalPresentation((obj as Document).DocumentType);
+                      else await displayRootRegistry.ShowModalPresentation(new DocumentType());
+                  }));
+            }
+        }
+
+
     }
 }

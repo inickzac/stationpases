@@ -24,6 +24,7 @@ namespace stationpases
             // displayRootRegistry.RegisterWindowType<MainWindowVM, Views.MainWindowView>();
             displayRootRegistry.RegisterWindowType<AddVisitorVM, AddVisitorWindow>();
             displayRootRegistry.RegisterWindowType<OneValueMenageDataVM, MenageSimpleData>();
+            displayRootRegistry.RegisterWindowType<DocumentType, AddDocumentType>();
         }
 
         protected override async void OnStartup(StartupEventArgs e)

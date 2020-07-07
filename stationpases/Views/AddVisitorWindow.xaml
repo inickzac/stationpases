@@ -34,7 +34,7 @@
                         <StackPanel Orientation="Horizontal">
                             <ComboBox ItemsSource="{Binding DocumentTypes}" DisplayMemberPath="Value" MinWidth="100" 
                                   SelectedItem="{Binding DocumentType}"></ComboBox>
-                            <Button DataContext="{Binding DocumentType}" MinWidth="20" Command="{Binding OpenModalWindow}" CommandParameter="{Binding}"></Button>
+                            <Button  MinWidth="20" Command="{Binding GetDoocumentTypeSettings}" CommandParameter="{Binding}"></Button>
                         </StackPanel>
                     </StackPanel>
                 </StackPanel>
