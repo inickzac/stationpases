@@ -10,7 +10,7 @@ using System.Windows;
 
 namespace stationpases.Model
 {
-    public class Visitor : VMContext, INotifyPropertyChanged, IDataMenage
+    public class Visitor : VMContext, INotifyPropertyChanged
     {
         int id;
         string name;
@@ -50,9 +50,6 @@ namespace stationpases.Model
             throw new NotImplementedException();
         }
 
-        public void save()
-        {
-            (Application.Current as App).db.SaveChanges();
-        }
+       
     }
 }

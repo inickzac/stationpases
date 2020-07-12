@@ -13,14 +13,11 @@ namespace stationpases.VMs
 {
     class AddVisitorVM
     {
-        public StationDBContext db { get; set; } = (Application.Current as App).db;
         public Visitor Visitor { get; set; }
 
         public AddVisitorVM()
         {
-            Visitor = db.Visitors.FirstOrDefault();
-            Document.documentTypes = new ObservableCollection<DocumentType>(db.DocumentTypes);
-
+            Visitor = MainBDContext.GetRef.Visitors.First();
         }
     }
 }

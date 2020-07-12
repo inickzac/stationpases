@@ -12,9 +12,6 @@ namespace stationpases.Model
         protected override void Seed(StationDBContext context)
         {
 
-         context.DocumentTypes.Add( new DocumentType { Type = "Паспорт" });
-
-
 
             var Document = new Document
             {
@@ -22,7 +19,7 @@ namespace stationpases.Model
                 Series = "AB",
                 Number = "4455",
                 IssuingAuthority = "КГБ",
-                DocumentType = new DocumentType { Type="rrr"}
+                DocumentType = new DocumentType { Value="rrr"}
             };
 
 
@@ -74,6 +71,7 @@ namespace stationpases.Model
                 SinglePassIssued = Employee2
             });
 
+            context.DocumentTypes.Add(new DocumentType { Value = "Паспорт" });
             context.SaveChanges();
 
         }

@@ -21,14 +21,14 @@ namespace stationpases.Model
         DateTime dateOfIssue;
         DocumentType documentType;
         string issuingAuthority;
-        StationDBContext db = (Application.Current as App).db;
-        public static ObservableCollection<DocumentType> documentTypes;     
+        StationDBContext db = MainBDContext.GetRef;
+        public StationDBContext Db { get { return db; } }
 
         [Key, ForeignKey("Visitor")]
         public int Id { get => id; set { id = value; OnPropertyChanged(); } }
         [Required]
         [MaxLength(50)]
-        public string Series { get => series; set { series = value; OnPropertyChanged(); } }
+        public string Series { get => series; set { series = value; OnPropertyChanged();} }
         [Required]
         [MaxLength(50)]
         public string Number { get => number; set { number = value; OnPropertyChanged(); } }
@@ -40,11 +40,6 @@ namespace stationpases.Model
         [MaxLength(50)]
         public string IssuingAuthority { get => issuingAuthority; set { issuingAuthority = value; OnPropertyChanged(); } }
 
-        public virtual Visitor Visitor { get; set; }
-        [NotMapped]
-        public ObservableCollection<DocumentType> DocumentTypes
-        {
-            get => documentTypes; set { documentTypes = value; OnPropertyChanged(); }
-        }
+        public virtual Visitor Visitor { get; set; }             
     }
 }

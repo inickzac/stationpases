@@ -30,12 +30,14 @@
                         <TextBlock Text="Номер"/>
                         <TextBox Text="{Binding Number}"/>
                     </StackPanel>
-                    <StackPanel>
-                        <ComboBox ItemsSource="{Binding DocumentTypes}" DisplayMemberPath="Type" SelectedItem="{Binding DocumentType}"></ComboBox>
+                    <StackPanel Orientation="Horizontal">
+                        <ComboBox ItemsSource="{Binding Db.DocumentTypes.Local}" DisplayMemberPath="Value" 
+                                  SelectedItem="{Binding DocumentType}"></ComboBox>
+                        <Button MinWidth="30" Command="{Binding DocumentType.OpenDocumentTypeViewEditor}"> </Button>
                     </StackPanel>
                 </StackPanel>
             </Expander>
-            <Button MinHeight="30" Command="{Binding SaveInBD}" CommandParameter="{Binding}"></Button>
+            <Button MinHeight="30" Command="{Binding SaveInBD}" CommandParameter="{Binding}" Click="Button_Click"></Button>
         </StackPanel>
     </Grid>
 </Window>

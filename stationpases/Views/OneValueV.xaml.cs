@@ -1,7 +1,5 @@
-﻿using stationpases.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,18 +15,13 @@ using System.Windows.Shapes;
 namespace stationpases.Views
 {
     /// <summary>
-    /// Логика взаимодействия для AddVisitorWindow.xaml
+    /// Логика взаимодействия для OneValueV.xaml
     /// </summary>
-    public partial class AddVisitorWindow : Window
+    public partial class OneValueV : Window
     {
-        public AddVisitorWindow()
+        public OneValueV()
         {
             InitializeComponent();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-          
         }
     }
 }

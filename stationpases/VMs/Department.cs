@@ -18,11 +18,9 @@ namespace stationpases.Model
         {
             Documents = new List<Employee>();
         }
-
         [Required]
         public int Id { get => id; set { id = value; OnPropertyChanged(); } }
-        [Required]
-        [MaxLength(50)]
+        [MaxLength(50), Required]
         public string Name { get => name; set { name = value; OnPropertyChanged(); } }
         public virtual ICollection<Employee> Documents { get; set; }
     }

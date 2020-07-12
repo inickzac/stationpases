@@ -13,7 +13,8 @@ namespace stationpases.VMs
 {
     public class VMContext
     {
-        DisplayRootRegistry displayRootRegistry = (Application.Current as App).displayRootRegistry;
+      protected  DisplayRootRegistry displayRootRegistry = (Application.Current as App).displayRootRegistry;
+
 
         public class RelayCommand : ICommand
         {
@@ -48,32 +49,6 @@ namespace stationpases.VMs
         public void OnPropertyChanged([CallerMemberName] string prop = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
-        }
-
-        private RelayCommand openModalWindow;
-        private RelayCommand saveInBD;
-
-        public RelayCommand OpenModalWindow
-        {
-            get
-            {
-                return openModalWindow ??
-                  (openModalWindow = new RelayCommand(async obj =>
-                  {
-
-                  }));
-            }
-        }
-        public RelayCommand SaveInBD
-        {
-            get
-            {
-                return saveInBD ??
-                  (saveInBD = new RelayCommand(obj =>
-                  {
-                      (obj as IDataMenage).save();
-                  }));
-            }
         }
 
     }

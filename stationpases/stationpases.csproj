@@ -65,18 +65,21 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\DBInitialaizer.cs" />
-    <Compile Include="Model\Department.cs" />
-    <Compile Include="Model\Document.cs" />
-    <Compile Include="Model\DocumentType.cs" />
-    <Compile Include="Model\Employee.cs" />
-    <Compile Include="Model\SinglePass.cs" />
-    <Compile Include="Model\Visitor.cs" />
+    <Compile Include="VMs\Department.cs" />
+    <Compile Include="VMs\Document.cs" />
+    <Compile Include="VMs\DocumentType.cs" />
+    <Compile Include="VMs\Employee.cs" />
+    <Compile Include="Model\MainBDContext.cs" />
+    <Compile Include="VMs\SinglePass.cs" />
+    <Compile Include="VMs\Visitor.cs" />
     <Compile Include="Views\AddVisitorWindow.xaml.cs">
       <DependentUpon>AddVisitorWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\DisplayRootRegistry.cs" />
+    <Compile Include="Views\OneValueV.xaml.cs">
+      <DependentUpon>OneValueV.xaml</DependentUpon>
+    </Compile>
     <Compile Include="VMs\AddVisitorVM.cs" />
-    <Compile Include="VMs\IDataMenage.cs" />
     <Compile Include="VMs\VMContext.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -91,6 +94,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\AddVisitorWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\OneValueV.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -17,12 +17,12 @@ namespace stationpases
     public partial class App : Application
     {
         public DisplayRootRegistry displayRootRegistry = new DisplayRootRegistry();
-        public StationDBContext db = new StationDBContext();
 
         public App()
         {
            // displayRootRegistry.RegisterWindowType<MainWindowVM, Views.MainWindowView>();
             displayRootRegistry.RegisterWindowType<AddVisitorVM, AddVisitorWindow>();
+            displayRootRegistry.RegisterWindowType<DocumentType, OneValueV>();
         }
 
         protected override async void OnStartup(StartupEventArgs e)
@@ -37,8 +37,7 @@ namespace stationpases
         }
 
         protected override void OnExit(ExitEventArgs e)
-        {
-            db.Dispose();
+        {           
             base.OnExit(e);
         }
 
