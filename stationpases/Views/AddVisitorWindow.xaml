@@ -34,6 +34,8 @@
                         <ComboBox ItemsSource="{Binding Db.DocumentTypes.Local}" DisplayMemberPath="Value" 
                                   SelectedItem="{Binding DocumentType}"></ComboBox>
                         <Button MinWidth="30" Command="{Binding DocumentType.OpenDocumentTypeViewEditor}"> </Button>
+                        <Button MinWidth="30" Command="{Binding AddNewDockType}"></Button>
+                        <Button MinWidth="30" Command="{Binding DocumentType.DeleteInDB}" ></Button>
                     </StackPanel>
                 </StackPanel>
             </Expander>

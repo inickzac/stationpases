@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -13,7 +14,7 @@ using System.Windows;
 
 namespace stationpases.Model
 {
-    public class DocumentType : VMContext, INotifyPropertyChanged
+    public class DocumentType : VMContext, INotifyPropertyChanged, IOneValue
     {
         int id;
         string value;
@@ -33,8 +34,9 @@ namespace stationpases.Model
         public virtual IList<Document> Documents {get; set;}
         private RelayCommand openModalWindow;
         private RelayCommand saveInBD;
+        private RelayCommand deleteInDB;
 
-        public RelayCommand OpenDocumentTypeViewEditor
+        public RelayCommand OpenViewEditor
         {
             get
             {
@@ -53,13 +55,31 @@ namespace stationpases.Model
                 return saveInBD ??
                   (saveInBD = new RelayCommand(obj =>
                   {
+                      StationDBContext db = MainBDContext.GetRef;
                       Value = ValueTemp;
-                      MainBDContext.GetRef.DocumentTypes.AddOrUpdate(this);
-                      MainBDContext.GetRef.SaveChanges();
+                      db.DocumentTypes.AddOrUpdate(this);
+                      db.SaveChanges();
                   }));
             }
         }
 
-     
+        public RelayCommand DeleteInDB
+        {
+            get
+            {
+                return deleteInDB ??
+                  (deleteInDB = new RelayCommand(obj =>
+                  {
+                      if (!Documents.Any()) 
+                      {
+                          StationDBContext db = MainBDContext.GetRef;
+                          db.DocumentTypes.Remove(this);
+                          db.SaveChanges();
+                       
+                      }
+                  }));
+            }
+        }
+
     }
 }

@@ -65,11 +65,16 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\DBInitialaizer.cs" />
+    <Compile Include="Views\OneValueExtendedV.xaml.cs">
+      <DependentUpon>OneValueExtendedV.xaml</DependentUpon>
+    </Compile>
     <Compile Include="VMs\Department.cs" />
     <Compile Include="VMs\Document.cs" />
     <Compile Include="VMs\DocumentType.cs" />
     <Compile Include="VMs\Employee.cs" />
     <Compile Include="Model\MainBDContext.cs" />
+    <Compile Include="VMs\IOneValue.cs" />
+    <Compile Include="VMs\OneValueExtendedVM.cs" />
     <Compile Include="VMs\SinglePass.cs" />
     <Compile Include="VMs\Visitor.cs" />
     <Compile Include="Views\AddVisitorWindow.xaml.cs">
@@ -94,6 +99,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\AddVisitorWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\OneValueExtendedV.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

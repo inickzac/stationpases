@@ -13,7 +13,7 @@ namespace stationpases.VMs
 {
     class AddVisitorVM
     {
-        public Visitor Visitor { get; set; }
+        public  Visitor Visitor { get; set; }
 
         public AddVisitorVM()
         {

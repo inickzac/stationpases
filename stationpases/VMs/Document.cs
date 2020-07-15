@@ -40,6 +40,21 @@ namespace stationpases.Model
         [MaxLength(50)]
         public string IssuingAuthority { get => issuingAuthority; set { issuingAuthority = value; OnPropertyChanged(); } }
 
-        public virtual Visitor Visitor { get; set; }             
+        public virtual Visitor Visitor { get; set; }
+
+        private RelayCommand addNewDockType;
+        public RelayCommand AddNewDockType
+        {
+            get
+            {
+                return addNewDockType ??
+                  (addNewDockType = new RelayCommand(obj =>
+                  {
+                      new DocumentType().OpenViewEditor.Execute(null);
+                  }));
+            }
+        }
+
+      
     }
 }
