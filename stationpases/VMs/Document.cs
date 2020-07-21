@@ -55,6 +55,19 @@ namespace stationpases.Model
             }
         }
 
-      
+        private RelayCommand showDockTypeExtendedView;
+        public RelayCommand ShowDockTypeExtendedView
+        {
+            get
+            {
+                return showDockTypeExtendedView ??
+                  (showDockTypeExtendedView = new RelayCommand(obj =>
+                  {
+                       displayRootRegistry.ShowModalPresentation(new OneValueExtendedVM<DocumentType>(DocumentType));
+                  }));
+            }
+        }
+
+
     }
 }

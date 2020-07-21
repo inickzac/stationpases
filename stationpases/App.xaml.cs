@@ -23,6 +23,7 @@ namespace stationpases
            // displayRootRegistry.RegisterWindowType<MainWindowVM, Views.MainWindowView>();
             displayRootRegistry.RegisterWindowType<AddVisitorVM, AddVisitorWindow>();
             displayRootRegistry.RegisterWindowType<DocumentType, OneValueV>();
+            displayRootRegistry.RegisterWindowType<OneValueExtendedVM<DocumentType>, OneValueExtendedV>();
         }
 
         protected override async void OnStartup(StartupEventArgs e)

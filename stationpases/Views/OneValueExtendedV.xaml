@@ -8,7 +8,9 @@
         Title="OneValueExtendedV" Height="450" Width="800">
     <Grid>
         <StackPanel>
-            
+            <TextBox Text="{Binding Value}"></TextBox>
+            <ListBox ItemsSource="{Binding ValueList}" DisplayMemberPath="Value"></ListBox>
         </StackPanel>
+    
     </Grid>
 </Window>
