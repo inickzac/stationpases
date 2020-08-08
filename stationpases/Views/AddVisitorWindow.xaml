@@ -33,13 +33,13 @@
                     <StackPanel Orientation="Horizontal">
                         <ComboBox ItemsSource="{Binding Db.DocumentTypes.Local}" DisplayMemberPath="Value" 
                                   SelectedItem="{Binding DocumentType}"></ComboBox>
-                        <Button MinWidth="30" Command="{Binding DocumentType.OpenViewEditor}"> </Button>
-                        <Button MinWidth="30" Command="{Binding AddNewDockType}"></Button>
-                        <Button MinWidth="30" Command="{Binding ShowDockTypeExtendedView}" ></Button>
+                        <Button MinWidth="30" Command="{Binding DocumentType.DbTableMenage.EditValue}"> </Button>
+                        <Button MinWidth="30" Command="{Binding DocumentType.DbTableMenage.AddNewValue}"></Button>
+                        <Button MinWidth="30" Command="{Binding ShowDockTypeViewExtendedView}"></Button>
                     </StackPanel>
                 </StackPanel>
             </Expander>
-            <Button MinHeight="30" Command="{Binding SaveInBD}" CommandParameter="{Binding}" Click="Button_Click"></Button>
+            <Button MinHeight="30"  CommandParameter="{Binding}" Click="Button_Click"></Button>
         </StackPanel>
     </Grid>
 </Window>

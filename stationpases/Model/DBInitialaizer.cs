@@ -71,6 +71,12 @@ namespace stationpases.Model
                 SinglePassIssued = Employee2
             });
 
+            for (int i = 0; i < 100; i++)
+            {
+                context.DocumentTypes.Add(new DocumentType { Value = i.ToString() }); ;
+            }
+            
+            
             context.DocumentTypes.Add(new DocumentType { Value = "Паспорт" });
             context.SaveChanges();
 

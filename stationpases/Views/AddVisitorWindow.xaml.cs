@@ -34,7 +34,7 @@ namespace stationpases.Views
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            int i = 0;
+           
 
         }
     }

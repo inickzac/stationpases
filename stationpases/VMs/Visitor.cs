@@ -45,11 +45,6 @@ namespace stationpases.Model
         public virtual ICollection<SinglePass> SinglePasses { get; set; }
         public string Patronymic { get => patronymic; set { patronymic = value; OnPropertyChanged(); } }
 
-        public void Delete()
-        {
-            throw new NotImplementedException();
-        }
-
        
     }
 }

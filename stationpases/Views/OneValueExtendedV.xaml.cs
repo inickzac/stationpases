@@ -23,5 +23,10 @@ namespace stationpases.Views
         {
             InitializeComponent();
         }
+
+        private void filter_Filter(object sender, FilterEventArgs e)
+        {
+
+        }
     }
 }

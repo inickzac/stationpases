@@ -28,46 +28,41 @@ namespace stationpases.Model
         public int Id { get => id; set { id = value; OnPropertyChanged(); } }
         [Required]
         [MaxLength(50)]
-        public string Series { get => series; set { series = value; OnPropertyChanged();} }
+        public string Series { get => series; set { series = value; OnPropertyChanged(); } }
         [Required]
         [MaxLength(50)]
         public string Number { get => number; set { number = value; OnPropertyChanged(); } }
         [Required]
         public DateTime DateOfIssue { get => dateOfIssue; set { dateOfIssue = value; OnPropertyChanged(); } }
         [Required]
-        public virtual DocumentType DocumentType { get => documentType; set { documentType = value; OnPropertyChanged(); } }
+        public virtual DocumentType DocumentType
+        {
+            get => documentType; set { documentType = value; OnPropertyChanged(); }
+        }
         [Required]
         [MaxLength(50)]
         public string IssuingAuthority { get => issuingAuthority; set { issuingAuthority = value; OnPropertyChanged(); } }
 
         public virtual Visitor Visitor { get; set; }
 
-        private RelayCommand addNewDockType;
-        public RelayCommand AddNewDockType
+        private void DocumentType_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            get
-            {
-                return addNewDockType ??
-                  (addNewDockType = new RelayCommand(obj =>
-                  {
-                      new DocumentType().OpenViewEditor.Execute(null);
-                  }));
-            }
+            OnPropertyChanged(nameof(DocumentType));
         }
 
         private RelayCommand showDockTypeExtendedView;
-        public RelayCommand ShowDockTypeExtendedView
+        public RelayCommand ShowDockTypeViewExtendedView
         {
             get
             {
                 return showDockTypeExtendedView ??
                   (showDockTypeExtendedView = new RelayCommand(obj =>
                   {
-                       displayRootRegistry.ShowModalPresentation(new OneValueExtendedVM<DocumentType>(DocumentType));
+                      DocumentType.DbTableMenage.ShowExtendedView(
+                          (objCB) => { this.DocumentType = (DocumentType)objCB; });
                   }));
             }
         }
-
 
     }
 }
