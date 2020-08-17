@@ -20,7 +20,7 @@
                 Grid.Row="1"/>
         <StackPanel Orientation="Horizontal"  Grid.Row="2">
             <Button Command="{Binding SaveChoise}" Content="Выбрать" MinWidth="300" />
-            <Button Command="{Binding DeleteInDB}" MinWidth="300" Content="Удалить"/>
+            <Button Command="{Binding TempSelectedValue.DbTableMenage.DeleteInDB}" IsEnabled="{Binding ReadyToDelete}"   MinWidth="300" Content="Удалить"/>
         </StackPanel>
     </Grid>
 </Window>

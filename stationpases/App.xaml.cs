@@ -24,6 +24,7 @@ namespace stationpases
             displayRootRegistry.RegisterWindowType<AddVisitorVM, AddVisitorWindow>();
             displayRootRegistry.RegisterWindowType<DocumentType, OneValueV>();
             displayRootRegistry.RegisterWindowType<OneValueExtendedVM<DocumentType>, OneValueExtendedV>();
+            displayRootRegistry.RegisterWindowType<DialogVM, DialogWindowV>();
         }
 
         protected override async void OnStartup(StartupEventArgs e)

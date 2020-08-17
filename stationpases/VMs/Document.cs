@@ -58,6 +58,7 @@ namespace stationpases.Model
                 return showDockTypeExtendedView ??
                   (showDockTypeExtendedView = new RelayCommand(obj =>
                   {
+                      if (DocumentType == null) DocumentType = new DocumentType();
                       DocumentType.DbTableMenage.ShowExtendedView(
                           (objCB) => { this.DocumentType = (DocumentType)objCB; });
                   }));

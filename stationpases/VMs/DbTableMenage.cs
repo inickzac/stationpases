@@ -25,7 +25,7 @@ namespace stationpases.VMs
         public DbTableMenage(T menageTable)
         {
             this.menageTable = menageTable;
-        }     
+        }
 
         public RelayCommand EditValue
         {
@@ -50,8 +50,8 @@ namespace stationpases.VMs
                       menageTable.SaveTempData();
                       db.Set<T>().AddOrUpdate(menageTable);
                       db.SaveChanges();
-                      displayRootRegistry.HidePresentation(menageTable);
-                  }));
+                      HidePresentation(obj);
+                  }, obj => menageTable != null));
             }
         }
         public RelayCommand DeleteInDB
@@ -66,9 +66,10 @@ namespace stationpases.VMs
                           StationDBContext db = MainBDContext.GetRef;
                           db.Set<T>().Remove(menageTable);
                           db.SaveChanges();
-                          displayRootRegistry.HidePresentation(menageTable);
+                          HidePresentation(obj);
                       }
-                  }));
+                      else displayRootRegistry.ShowPresentation(new DialogVM("Значение используется"));
+                  }/*, obj => menageTable != null*/));
             }
         }
         private RelayCommand addNewValue;
@@ -83,6 +84,13 @@ namespace stationpases.VMs
                       displayRootRegistry.ShowPresentation(new T());
                   }));
             }
+        }
+
+
+        private void HidePresentation(object presentationVM)
+        {
+            if (presentationVM == null) displayRootRegistry.HidePresentation(menageTable);
+            else displayRootRegistry.HidePresentation(presentationVM);
         }
 
     }

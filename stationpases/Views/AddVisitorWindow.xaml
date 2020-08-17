@@ -30,13 +30,30 @@
                         <TextBlock Text="Номер"/>
                         <TextBox Text="{Binding Number}"/>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <ComboBox ItemsSource="{Binding Db.DocumentTypes.Local}" DisplayMemberPath="Value" 
-                                  SelectedItem="{Binding DocumentType}"></ComboBox>
-                        <Button MinWidth="30" Command="{Binding DocumentType.DbTableMenage.EditValue}"> </Button>
-                        <Button MinWidth="30" Command="{Binding DocumentType.DbTableMenage.AddNewValue}"></Button>
-                        <Button MinWidth="30" Command="{Binding ShowDockTypeViewExtendedView}"></Button>
-                    </StackPanel>
+                    <WrapPanel>
+                        <StackPanel>
+                            <TextBlock Text="Тип локумента"></TextBlock>
+                            <StackPanel Orientation="Horizontal">
+                                <ComboBox ItemsSource="{Binding Db.DocumentTypes.Local}" DisplayMemberPath="Value" 
+                                  SelectedItem="{Binding DocumentType}" MinWidth="80"></ComboBox>
+                                <Button  Style="{StaticResource ResourceKey=EditTamplateButtom}"></Button>
+                                <Button  Style="{StaticResource ResourceKey=NewItemButtonTemplate}"></Button>
+                                <Button  Command="{Binding ShowDockTypeViewExtendedView}" 
+                                     Style="{StaticResource ResourceKey=ExpandButtomTemplate}"></Button>
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Margin="20,0,0,0">
+                            <TextBlock Text="Тип локумента"></TextBlock>
+                            <StackPanel Orientation="Horizontal">
+                                <ComboBox ItemsSource="{Binding Db.DocumentTypes.Local}" DisplayMemberPath="Value" 
+                                  SelectedItem="{Binding DocumentType}" MinWidth="80"></ComboBox>
+                                <Button  Style="{StaticResource ResourceKey=EditTamplateButtom}"></Button>
+                                <Button  Style="{StaticResource ResourceKey=NewItemButtonTemplate}"></Button>
+                                <Button  Command="{Binding ShowDockTypeViewExtendedView}" 
+                                     Style="{StaticResource ResourceKey=ExpandButtomTemplate}"></Button>
+                            </StackPanel>
+                        </StackPanel>
+                    </WrapPanel>
                 </StackPanel>
             </Expander>
             <Button MinHeight="30"  CommandParameter="{Binding}" Click="Button_Click"></Button>

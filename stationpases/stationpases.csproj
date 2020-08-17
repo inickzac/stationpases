@@ -65,11 +65,15 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\DBInitialaizer.cs" />
+    <Compile Include="Views\DialogWindowV.xaml.cs">
+      <DependentUpon>DialogWindowV.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\OneValueExtendedV.xaml.cs">
       <DependentUpon>OneValueExtendedV.xaml</DependentUpon>
     </Compile>
     <Compile Include="VMs\DbTableMenage.cs" />
     <Compile Include="VMs\Department.cs" />
+    <Compile Include="VMs\DialogVM.cs" />
     <Compile Include="VMs\Document.cs" />
     <Compile Include="VMs\DocumentType.cs" />
     <Compile Include="VMs\Employee.cs" />
@@ -104,6 +108,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\AddVisitorWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DialogWindowV.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -143,6 +151,14 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\minus.png" />
+    <Resource Include="Resources\pen.png" />
+    <Resource Include="Resources\plus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\extend.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
