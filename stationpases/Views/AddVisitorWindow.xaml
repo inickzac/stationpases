@@ -8,27 +8,45 @@
         Title="AddVisitorWindow" Height="450" Width="800">
     <Grid>
         <StackPanel DataContext="{Binding Visitor}">
-            <StackPanel >
-                <TextBlock Text="Имя"/>
-                <TextBox Text="{Binding Name}"/>
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Style="{StaticResource ResourceKey=StackPanelStyle}">
+                    <TextBlock Text="Имя"/>
+                    <TextBox Text="{Binding Name}"/>
+                </StackPanel>
+                <StackPanel Style="{StaticResource ResourceKey=StackPanelWithMarginStyle}">
+                    <TextBlock Text="Фамилия"/>
+                    <TextBox Text="{Binding LastName}"/>
+                </StackPanel>
+                <StackPanel Style="{StaticResource ResourceKey=StackPanelWithMarginStyle}">
+                    <TextBlock Text="Отчество"/>
+                    <TextBox Text="{Binding Patronymic}"/>
+                </StackPanel>
             </StackPanel>
-            <StackPanel>
-                <TextBlock Text="Фамилия"/>
-                <TextBox Text="{Binding LastName}"/>
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Style="{StaticResource ResourceKey=StackPanelStyle}">
+                    <TextBlock Text="Должность"/>
+                    <TextBox Text="{Binding Position}"/>
+                </StackPanel>
+                <StackPanel HorizontalAlignment="Left" Margin="10,0,0,0" MinWidth="200">
+                    <TextBlock Text="Место работы"/>
+                    <TextBox Text="{Binding PlaceOfWork}"/>
+                </StackPanel>
             </StackPanel>
-            <StackPanel>
-                <TextBlock Text="Отчество"/>
-                <TextBox Text="{Binding Patronymic}"/>
-            </StackPanel>
-            <Expander Header="Документ" IsExpanded="True" DataContext="{Binding Document}">
+            <Expander Header="Документ" IsExpanded="True" DataContext="{Binding Document}" Background="#FFF1EFEF">
                 <StackPanel>
-                    <StackPanel>
-                        <TextBlock Text="Серия"/>
-                        <TextBox Text="{Binding Series}"/>
+                    <StackPanel Style="{StaticResource ResourceKey=StackPanelStyle}">
+                        <TextBlock Text="Дата выдачи"/>
+                        <DatePicker SelectedDate="{Binding DateOfIssue}"></DatePicker>
                     </StackPanel>
-                    <StackPanel>
-                        <TextBlock Text="Номер"/>
-                        <TextBox Text="{Binding Number}"/>
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel>
+                            <TextBlock Text="Серия"/>
+                            <TextBox Text="{Binding Series}"/>
+                        </StackPanel>
+                        <StackPanel Style="{StaticResource ResourceKey=StackPanelWithMarginStyle}">
+                            <TextBlock Text="Номер"/>
+                            <TextBox Text="{Binding Number}"/>
+                        </StackPanel>
                     </StackPanel>
                     <WrapPanel>
                         <StackPanel>
@@ -36,27 +54,61 @@
                             <StackPanel Orientation="Horizontal">
                                 <ComboBox ItemsSource="{Binding Db.DocumentTypes.Local}" DisplayMemberPath="Value" 
                                   SelectedItem="{Binding DocumentType}" MinWidth="80"></ComboBox>
-                                <Button  Style="{StaticResource ResourceKey=EditTamplateButtom}"></Button>
-                                <Button  Style="{StaticResource ResourceKey=NewItemButtonTemplate}"></Button>
-                                <Button  Command="{Binding ShowDockTypeViewExtendedView}" 
-                                     Style="{StaticResource ResourceKey=ExpandButtomTemplate}"></Button>
+                                <Button  Style="{StaticResource ResourceKey=EditTamplateButtom}" 
+                                         Command="{Binding DocumentType.DbTableMenage.EditValue}"
+                                         CommandParameter="{Binding}">
+                                </Button>
+                                <Button  Style="{StaticResource ResourceKey=NewItemButtonTemplate}"
+                                         Command="{Binding DocumentType.DbTableMenage.AddNewValue}"
+                                         CommandParameter="{Binding}">
+                                </Button>
+                                <Button  Command="{Binding ShowDockTypeViewExtendedView}"                                          
+                                         Style="{StaticResource ResourceKey=ExpandButtomTemplate}"></Button>
                             </StackPanel>
                         </StackPanel>
-                        <StackPanel Margin="20,0,0,0">
-                            <TextBlock Text="Тип локумента"></TextBlock>
+                        <StackPanel Margin="10,0,0,0">
+                            <TextBlock Text="Кто выдал"></TextBlock>
                             <StackPanel Orientation="Horizontal">
-                                <ComboBox ItemsSource="{Binding Db.DocumentTypes.Local}" DisplayMemberPath="Value" 
-                                  SelectedItem="{Binding DocumentType}" MinWidth="80"></ComboBox>
-                                <Button  Style="{StaticResource ResourceKey=EditTamplateButtom}"></Button>
-                                <Button  Style="{StaticResource ResourceKey=NewItemButtonTemplate}"></Button>
-                                <Button  Command="{Binding ShowDockTypeViewExtendedView}" 
-                                     Style="{StaticResource ResourceKey=ExpandButtomTemplate}"></Button>
+                                <ComboBox ItemsSource="{Binding Db.IssuingAuthorities.Local}" DisplayMemberPath="Value" 
+                                  SelectedItem="{Binding IssuingAuthority}" MinWidth="80"></ComboBox>
+                                <Button  Style="{StaticResource ResourceKey=EditTamplateButtom}" 
+                                         Command="{Binding IssuingAuthority.DbTableMenage.EditValue}"
+                                         CommandParameter="{Binding}">
+                                </Button>
+                                <Button  Style="{StaticResource ResourceKey=NewItemButtonTemplate}"
+                                         Command="{Binding IssuingAuthority.DbTableMenage.AddNewValue}"
+                                         CommandParameter="{Binding}">
+                                </Button>
+                                <Button  Command="{Binding ShowIssuingAuthorityExtendedView}"                                          
+                                         Style="{StaticResource ResourceKey=ExpandButtomTemplate}"></Button>
                             </StackPanel>
                         </StackPanel>
                     </WrapPanel>
                 </StackPanel>
             </Expander>
-            <Button MinHeight="30"  CommandParameter="{Binding}" Click="Button_Click"></Button>
+            <Expander Header="Разовый пропуск">
+                <DataGrid ItemsSource="{Binding SinglePasses, Mode=TwoWay}" AutoGenerateColumns="False" SelectedItem="{Binding SinglePass}" IsReadOnly="True">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Id" Binding="{Binding Id}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Разрешение выдал" Binding="{Binding SinglePassIssued}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Сопровождающий" Binding="{Binding Accompanying}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Дата начала действия" Binding="{Binding DateOfIssue}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Дата окончания действия" Binding="{Binding ValidUntil}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Цель выдачи" Binding="{Binding PurposeOfIssuance}"></DataGridTextColumn>
+                        <DataGridTemplateColumn>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Content="Удалить" Command="{Binding DbTableMenage.DeleteInDB}" Background="#FFE4ACAC"  />
+                                        <Button Content="Изменить" Command="{Binding DbTableMenage.EditValue}" />
+                                        <Button Content="Генерировать документ" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Expander>
         </StackPanel>
     </Grid>
 </Window>

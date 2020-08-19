@@ -20,6 +20,7 @@ namespace stationpases.Model
             {
                 if (stationDBContext == null) stationDBContext = new StationDBContext();
                 stationDBContext.DocumentTypes.Load();
+                stationDBContext.IssuingAuthorities.Load();
                 return stationDBContext;
             }
         }

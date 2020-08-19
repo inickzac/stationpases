@@ -18,7 +18,7 @@ namespace stationpases.Model
                 DateOfIssue = DateTime.Now,
                 Series = "AB",
                 Number = "4455",
-                IssuingAuthority = "КГБ",
+                IssuingAuthority = new VMs.IssuingAuthority { Value="hhh"},
                 DocumentType = new DocumentType { Value="rrr"}
             };
 
@@ -38,8 +38,9 @@ namespace stationpases.Model
             var Employee = new Employee
             {
                 Department = new Department { Name = "Отдел продаж" },
-                Name = "Ира",
-                LastName = "Попа",
+                Name = "Георгий",
+                LastName = "Тестовой",
+                Patronymic = "Васильевич",
                 Position = "Инженер"           
             };
 
@@ -48,6 +49,7 @@ namespace stationpases.Model
                 Department = new Department { Name = "Отдел сбыта" },
                 Name = "дима",
                 LastName = "П",
+                Patronymic="Васильевич",
                 Position = "Исм"
             };
 

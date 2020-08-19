@@ -1,5 +1,6 @@
 ﻿namespace stationpases.Model
 {
+    using stationpases.VMs;
     using System;
     using System.Data.Entity;
     using System.Linq;
@@ -25,6 +26,7 @@
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Department> Departments { get; set; }
         public DbSet<SinglePass> SinglePasses { get; set; }
+        public DbSet<IssuingAuthority> IssuingAuthorities { get; set; }
     }
 
 

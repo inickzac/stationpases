@@ -4,7 +4,6 @@
              xmlns:local="clr-namespace:stationpases">
     <Application.Resources>
         <Style x:Key="EditTamplateButtom">
-            <Setter Property="Button.Command" Value="{Binding DocumentType.DbTableMenage.EditValue}" ></Setter>
             <Setter Property="Button.ContentTemplate">
                 <Setter.Value>
                     <DataTemplate>
@@ -14,7 +13,6 @@
             </Setter>
         </Style>
         <Style x:Key="NewItemButtonTemplate">
-            <Setter Property="Button.Command" Value="{Binding DocumentType.DbTableMenage.AddNewValue}"></Setter>
             <Setter Property="Button.ContentTemplate">
                 <Setter.Value>
                     <DataTemplate>
@@ -31,6 +29,14 @@
                     </DataTemplate>
                 </Setter.Value>
             </Setter>
+        </Style>
+        <Style x:Key="StackPanelStyle" TargetType="StackPanel">
+            <Setter Property="MinWidth" Value="130"></Setter>
+            <Setter Property="MaxWidth" Value="300"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+        </Style>
+        <Style x:Key="StackPanelWithMarginStyle" BasedOn="{StaticResource ResourceKey=StackPanelStyle}" TargetType="StackPanel">
+            <Setter Property="Margin" Value="10,0,0,0"></Setter>
         </Style>
     </Application.Resources>
 </Application>

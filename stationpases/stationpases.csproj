@@ -71,6 +71,9 @@
     <Compile Include="Views\OneValueExtendedV.xaml.cs">
       <DependentUpon>OneValueExtendedV.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\SinglePassView.xaml.cs">
+      <DependentUpon>SinglePassView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="VMs\DbTableMenage.cs" />
     <Compile Include="VMs\Department.cs" />
     <Compile Include="VMs\DialogVM.cs" />
@@ -79,6 +82,7 @@
     <Compile Include="VMs\Employee.cs" />
     <Compile Include="Model\MainBDContext.cs" />
     <Compile Include="VMs\interfeses\IDbTableMenage.cs" />
+    <Compile Include="VMs\IssuingAuthority.cs" />
     <Compile Include="VMs\OneValue\IOneValueBDMenage.cs" />
     <Compile Include="VMs\interfeses\IReadyForDBMenage.cs" />
     <Compile Include="VMs\interfeses\IOneValue.cs" />
@@ -123,6 +127,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\SinglePassView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\StationDBContext.cs" />
@@ -160,5 +168,6 @@
   <ItemGroup>
     <Resource Include="Resources\extend.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

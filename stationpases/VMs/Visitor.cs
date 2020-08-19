@@ -1,8 +1,10 @@
 ﻿using stationpases.VMs;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,15 +18,14 @@ namespace stationpases.Model
         string name;
         string lastName;
         string position;
-        int documentId;
         string placeOfWork;
         Document document;
-        SinglePass singlePass;
         string patronymic;
+        SinglePass singlePass;
 
         public Visitor()
         {
-            SinglePasses = new List<SinglePass>();
+            SinglePasses = new ObservableCollection<SinglePass>();
         }
 
         public int Id { get => id; set { id = value; OnPropertyChanged(); } }
@@ -44,7 +45,7 @@ namespace stationpases.Model
         public virtual Document Document { get => document; set { document = value; OnPropertyChanged(); } }
         public virtual ICollection<SinglePass> SinglePasses { get; set; }
         public string Patronymic { get => patronymic; set { patronymic = value; OnPropertyChanged(); } }
-
-       
+        [NotMapped]
+        public SinglePass SinglePass { get => singlePass; set { singlePass = value; OnPropertyChanged(); } }
     }
 }

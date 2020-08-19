@@ -20,7 +20,7 @@ namespace stationpases.Model
         string number;
         DateTime dateOfIssue;
         DocumentType documentType;
-        string issuingAuthority;
+        IssuingAuthority issuingAuthority;
         StationDBContext db = MainBDContext.GetRef;
         public StationDBContext Db { get { return db; } }
 
@@ -39,16 +39,13 @@ namespace stationpases.Model
         {
             get => documentType; set { documentType = value; OnPropertyChanged(); }
         }
-        [Required]
-        [MaxLength(50)]
-        public string IssuingAuthority { get => issuingAuthority; set { issuingAuthority = value; OnPropertyChanged(); } }
+
+        public virtual IssuingAuthority IssuingAuthority 
+        { 
+            get => issuingAuthority; set { issuingAuthority = value; OnPropertyChanged(); } 
+        }
 
         public virtual Visitor Visitor { get; set; }
-
-        private void DocumentType_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            OnPropertyChanged(nameof(DocumentType));
-        }
 
         private RelayCommand showDockTypeExtendedView;
         public RelayCommand ShowDockTypeViewExtendedView
@@ -64,6 +61,20 @@ namespace stationpases.Model
                   }));
             }
         }
-
+        
+        private RelayCommand showIssuingAuthorityExtendedView;
+        public RelayCommand ShowIssuingAuthorityExtendedView
+        {
+            get
+            {
+                return showIssuingAuthorityExtendedView ??
+                  (showIssuingAuthorityExtendedView = new RelayCommand(obj =>
+                  {
+                      if (IssuingAuthority == null) IssuingAuthority = new IssuingAuthority();
+                      IssuingAuthority.DbTableMenage.ShowExtendedView(
+                          (objCB) => { this.IssuingAuthority = (IssuingAuthority)objCB; });
+                  }));
+            }
+        }
     }
 }

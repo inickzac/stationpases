@@ -66,10 +66,9 @@ namespace stationpases.VMs
                           StationDBContext db = MainBDContext.GetRef;
                           db.Set<T>().Remove(menageTable);
                           db.SaveChanges();
-                          HidePresentation(obj);
                       }
                       else displayRootRegistry.ShowPresentation(new DialogVM("Значение используется"));
-                  }/*, obj => menageTable != null*/));
+                  }));
             }
         }
         private RelayCommand addNewValue;
