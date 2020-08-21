@@ -28,16 +28,24 @@ namespace stationpases.VMs
             this.selectingValue = selectingValue;
             TempSelectedValue = selectingValue;
             searchStr = "";
-            source =  new CollectionViewSource { Source = MainBDContext.GetRef.Set<T>().Local }.View;
+            source = new CollectionViewSource { Source = MainBDContext.GetRef.Set<T>().Local }.View;
             source.Filter = o => (o as T).Value.Contains(searchStr);
             this.CallBack = callBack;
         }
 
-        public bool ReadyToDelete { get => readyToDelete; 
-            set { readyToDelete = value; OnPropertyChanged(); } }
+        public bool ReadyToDelete
+        {
+            get => readyToDelete;
+            set { readyToDelete = value; OnPropertyChanged(); }
+        }
         public string Value { get => selectingValue.Value; set => selectingValue.Value = value; }
-        public T TempSelectedValue { get => tempSelectedValue; set { tempSelectedValue = value; OnPropertyChanged();
-                ReadyToDelete = !ReadyToDelete; }
+        public T TempSelectedValue
+        {
+            get => tempSelectedValue; set
+            {
+                tempSelectedValue = value; OnPropertyChanged();
+                ReadyToDelete = !ReadyToDelete;
+            }
         }
         public string SearchStr
         {
@@ -59,11 +67,11 @@ namespace stationpases.VMs
                       selectingValue = TempSelectedValue;
                       displayRootRegistry.HidePresentation(this);
                       callBack?.Invoke(selectingValue);
-                  }, obj => ReadyToDelete=TempSelectedValue != null));
+                  }, obj => ReadyToDelete = TempSelectedValue != null));
             }
         }
 
 
-    
+
     }
 }

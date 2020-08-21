@@ -28,6 +28,10 @@ namespace stationpases
             displayRootRegistry.RegisterWindowType<OneValueExtendedVM<IssuingAuthority>, OneValueExtendedV>();
             displayRootRegistry.RegisterWindowType<DialogVM, DialogWindowV>();
             displayRootRegistry.RegisterWindowType<SinglePass, SinglePassView>();
+            displayRootRegistry.RegisterWindowType<Employee, EmployeeV>();
+            displayRootRegistry.RegisterWindowType<Department, OneValueV>();
+            displayRootRegistry.RegisterWindowType<OneValueExtendedVM<Department>, OneValueExtendedV>();
+            displayRootRegistry.RegisterWindowType<OneValueExtendedVM<Employee>, OneValueExtendedV>();
         }
 
         protected override async void OnStartup(StartupEventArgs e)

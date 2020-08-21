@@ -85,6 +85,18 @@ namespace stationpases.VMs
             }
         }
 
+        private RelayCommand cancel;
+        public RelayCommand Cancel
+        {
+            get
+            {
+                return cancel ??
+                  (cancel = new RelayCommand(obj =>
+                  {
+                      HidePresentation(obj);
+                  }));
+            }
+        }
 
         private void HidePresentation(object presentationVM)
         {

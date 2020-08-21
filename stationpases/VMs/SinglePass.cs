@@ -28,6 +28,8 @@ namespace stationpases.Model
         string tempPurposeOfIssuance;
         Employee tempSinglePassIssued;
         Employee tempAccompanying;
+        StationDBContext db = MainBDContext.GetRef;
+        public StationDBContext Db { get { return db; } }
 
         public SinglePass()
         {
@@ -63,7 +65,7 @@ namespace stationpases.Model
         {
             TempDateOfIssue = DateOfIssue;
             TempValidUntil = ValidUntil;
-            TempSinglePassIssued = SinglePassIssued;
+            TempPurposeOfIssuance = PurposeOfIssuance;
             TempAccompanying = Accompanying;
             TempSinglePassIssued = SinglePassIssued;
         }
@@ -77,7 +79,37 @@ namespace stationpases.Model
             ValidUntil = TempValidUntil;
             SinglePassIssued = TempSinglePassIssued;
             Accompanying = TempAccompanying;
-            SinglePassIssued = TempSinglePassIssued;
+            PurposeOfIssuance = TempPurposeOfIssuance;
         }
+
+        private RelayCommand showSinglePassIssuedExtendedView;
+        public RelayCommand ShowSinglePassIssuedExtendedView
+        {
+            get
+            {
+                return showSinglePassIssuedExtendedView ??
+                  (showSinglePassIssuedExtendedView = new RelayCommand(obj =>
+                  {
+                      if (SinglePassIssued == null) SinglePassIssued = new Employee();
+                      SinglePassIssued.DbTableMenage.ShowExtendedView(
+                          (objCB) => { this.SinglePassIssued = (Employee)objCB; });
+                  }));
+            }
+        }
+        private RelayCommand showAccompanyingExtendedView;
+        public RelayCommand ShowAccompanyingExtendedView
+        {
+            get
+            {
+                return showAccompanyingExtendedView ??
+                  (showAccompanyingExtendedView = new RelayCommand(obj =>
+                  {
+                      if (Accompanying == null) Accompanying = new Employee();
+                      Accompanying.DbTableMenage.ShowExtendedView(
+                          (objCB) => { this.Accompanying = (Employee)objCB; });
+                  }));
+            }
+        }
+
     }
 }

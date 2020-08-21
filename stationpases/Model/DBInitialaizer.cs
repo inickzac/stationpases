@@ -37,7 +37,7 @@ namespace stationpases.Model
 
             var Employee = new Employee
             {
-                Department = new Department { Name = "Отдел продаж" },
+                Department = new Department { Value = "Отдел продаж" },
                 Name = "Георгий",
                 LastName = "Тестовой",
                 Patronymic = "Васильевич",
@@ -46,7 +46,7 @@ namespace stationpases.Model
 
             var Employee2 = new Employee
             {
-                Department = new Department { Name = "Отдел сбыта" },
+                Department = new Department { Value = "Отдел сбыта" },
                 Name = "дима",
                 LastName = "П",
                 Patronymic="Васильевич",

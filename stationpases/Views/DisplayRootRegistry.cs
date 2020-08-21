@@ -58,8 +58,8 @@ namespace stationpases.Views
         {
             if (vm == null)
                 throw new ArgumentNullException("vm");
-            if (openWindows.ContainsKey(vm))
-                throw new InvalidOperationException("UI for this VM is already displayed");
+            //if (openWindows.ContainsKey(vm))
+            //    throw new InvalidOperationException("UI for this VM is already displayed");
             var window = CreateWindowInstanceWithVM(vm);
             window.Show();
             window.DataContext = vm;

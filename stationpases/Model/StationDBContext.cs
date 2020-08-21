@@ -10,14 +10,16 @@
 
         static StationDBContext()
         {
-            Database.SetInitializer(new DBInitialaizer());
-
+            Database.SetInitializer(new DBInitialaizer());          
         }
 
 
         public StationDBContext()
             : base("name=StationDBContext")
         {
+            DocumentTypes.Load();
+            IssuingAuthorities.Load();
+            Departments.Load();
         }
 
         public DbSet<Document> Documents { get; set; }

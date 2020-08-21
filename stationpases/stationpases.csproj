@@ -68,6 +68,9 @@
     <Compile Include="Views\DialogWindowV.xaml.cs">
       <DependentUpon>DialogWindowV.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\EmployeeV.xaml.cs">
+      <DependentUpon>EmployeeV.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\OneValueExtendedV.xaml.cs">
       <DependentUpon>OneValueExtendedV.xaml</DependentUpon>
     </Compile>
@@ -116,6 +119,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\DialogWindowV.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EmployeeV.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
