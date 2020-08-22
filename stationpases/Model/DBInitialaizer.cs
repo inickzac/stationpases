@@ -18,20 +18,20 @@ namespace stationpases.Model
                 DateOfIssue = DateTime.Now,
                 Series = "AB",
                 Number = "4455",
-                IssuingAuthority = new VMs.IssuingAuthority { Value="hhh"},
-                DocumentType = new DocumentType { Value="rrr"}
+                IssuingAuthority = new VMs.IssuingAuthority { Value = "hhh" },
+                DocumentType = new DocumentType { Value = "rrr" }
             };
 
 
 
-              var Visitor = new Visitor
-              {
-                 Document = Document,
+            var Visitor = new Visitor
+            {
+                Document = Document,
                 LastName = "Василий",
                 Name = "Пупкин",
                 PlaceOfWork = "ooo monreal",
                 Position = "директор",
-                Patronymic="Васильевич"
+                Patronymic = "Васильевич"
 
             };
 
@@ -41,7 +41,7 @@ namespace stationpases.Model
                 Name = "Георгий",
                 LastName = "Тестовой",
                 Patronymic = "Васильевич",
-                Position = "Инженер"           
+                Position = "Инженер"
             };
 
             var Employee2 = new Employee
@@ -49,7 +49,7 @@ namespace stationpases.Model
                 Department = new Department { Value = "Отдел сбыта" },
                 Name = "дима",
                 LastName = "П",
-                Patronymic="Васильевич",
+                Patronymic = "Васильевич",
                 Position = "Исм"
             };
 
@@ -77,8 +77,27 @@ namespace stationpases.Model
             {
                 context.DocumentTypes.Add(new DocumentType { Value = i.ToString() }); ;
             }
-            
-            
+
+            context.TemporaryPasses.Add(new VMs.TemporaryPass
+            {
+                PurposeOfIssuance = "Посабирать грибы",
+                ValidWith = DateTime.Now,
+                ValitUntil = DateTime.Now,
+                TemporaryPassIssued = Employee2,
+                Visitor = Visitor
+
+            }) ;
+
+            context.TemporaryPasses.Add(new VMs.TemporaryPass
+            {
+                PurposeOfIssuance = "Выгул собак",
+                ValidWith = DateTime.Now,
+                ValitUntil = DateTime.Now,
+                TemporaryPassIssued = Employee,
+                Visitor = Visitor
+            });
+
+
             context.DocumentTypes.Add(new DocumentType { Value = "Паспорт" });
             context.SaveChanges();
 

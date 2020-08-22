@@ -29,6 +29,8 @@
         public DbSet<Department> Departments { get; set; }
         public DbSet<SinglePass> SinglePasses { get; set; }
         public DbSet<IssuingAuthority> IssuingAuthorities { get; set; }
+        public DbSet<TemporaryPass> TemporaryPasses { get; set; }
+       
     }
 
 

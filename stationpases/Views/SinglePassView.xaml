@@ -10,11 +10,11 @@
         <StackPanel>
             <StackPanel>
                 <TextBlock Text="Пропуск выдан"></TextBlock>
-                <DatePicker SelectedDate="{Binding TempDateOfIssue}"></DatePicker>
+                <DatePicker SelectedDate="{Binding TempDateOfIssue}" SelectedDateFormat="Long"></DatePicker>
             </StackPanel>
             <StackPanel>
                 <TextBlock Text="Действует до"></TextBlock>
-                <DatePicker SelectedDate="{Binding TempValidUntil}"></DatePicker>
+                <DatePicker SelectedDate="{Binding TempValidUntil }" SelectedDateFormat="Long" ></DatePicker>
             </StackPanel>
             <StackPanel>
                 <TextBlock Text="Цель выдачи"></TextBlock>

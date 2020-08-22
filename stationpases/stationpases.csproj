@@ -92,6 +92,7 @@
     <Compile Include="VMs\OneValue\OneValueDBMenage.cs" />
     <Compile Include="VMs\OneValue\OneValueExtendedVM.cs" />
     <Compile Include="VMs\SinglePass.cs" />
+    <Compile Include="VMs\TemporaryPass.cs" />
     <Compile Include="VMs\Visitor.cs" />
     <Compile Include="Views\AddVisitorWindow.xaml.cs">
       <DependentUpon>AddVisitorWindow.xaml</DependentUpon>

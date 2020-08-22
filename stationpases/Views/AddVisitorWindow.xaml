@@ -37,6 +37,7 @@
                     <StackPanel Style="{StaticResource ResourceKey=StackPanelStyle}">
                         <TextBlock Text="Дата выдачи"/>
                         <DatePicker SelectedDate="{Binding DateOfIssue}"></DatePicker>
+
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <StackPanel>
@@ -87,13 +88,40 @@
                 </StackPanel>
             </Expander>
             <Expander Header="Разовый пропуск" Background="#FFE9F3E7">
-                <DataGrid ItemsSource="{Binding SinglePasses, Mode=TwoWay}" AutoGenerateColumns="False" SelectedItem="{Binding SinglePass}" IsReadOnly="True">
+                <StackPanel>
+                    <DataGrid ItemsSource="{Binding SinglePasses, Mode=TwoWay}" AutoGenerateColumns="False" SelectedItem="{Binding SinglePass}" IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Id" Binding="{Binding Id}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Разрешение выдал" Binding="{Binding SinglePassIssued}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Сопровождающий" Binding="{Binding Accompanying}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Дата начала действия" Binding="{Binding DateOfIssue}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Дата окончания действия" Binding="{Binding ValidUntil}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Цель выдачи" Binding="{Binding PurposeOfIssuance}"></DataGridTextColumn>
+                            <DataGridTemplateColumn>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Button Content="Удалить" Command="{Binding DbTableMenage.DeleteInDB}" Background="#FFE4ACAC"  />
+                                            <Button Content="Изменить" Command="{Binding DbTableMenage.EditValue}" />
+                                            <Button Content="Генерировать документ" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button MinHeight="20" Content="Добавить" Background="#FFE9F3E7" 
+                            Command="{Binding SinglePass.DbTableMenage.AddNewValue}"
+                            CommandParameter="{Binding}"></Button>
+                </StackPanel>
+            </Expander>
+            <Expander Header="Временный пропуск">
+                <DataGrid ItemsSource="{Binding TemporaryPasses, Mode=TwoWay}" AutoGenerateColumns="False" SelectedItem="{Binding TemporaryPass}" IsReadOnly="True">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Id" Binding="{Binding Id}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Разрешение выдал" Binding="{Binding SinglePassIssued}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Сопровождающий" Binding="{Binding Accompanying}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Дата начала действия" Binding="{Binding DateOfIssue}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Дата окончания действия" Binding="{Binding ValidUntil}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Разрешение выдал" Binding="{Binding TemporaryPassIssued}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Дата начала действия" Binding="{Binding ValidWith}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Дата окончания действия" Binding="{Binding ValitUntil}"></DataGridTextColumn>
                         <DataGridTextColumn Header="Цель выдачи" Binding="{Binding PurposeOfIssuance}"></DataGridTextColumn>
                         <DataGridTemplateColumn>
                             <DataGridTemplateColumn.CellTemplate>

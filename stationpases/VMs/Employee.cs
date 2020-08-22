@@ -33,6 +33,7 @@ namespace stationpases.Model
             DbTableMenage = new OneValueDBMenage<Employee>(this);
             SinglePassIssued = new List<SinglePass>();
             Accompanying = new List<SinglePass>();
+            TemporaryPassIssued = new List<TemporaryPass>();
         }
 
         public IOneValueBDMenage DbTableMenage { get; set; }
@@ -51,6 +52,8 @@ namespace stationpases.Model
         public Department Department { get => department; set { department = value; OnPropertyChanged(); } }
         public virtual ICollection<SinglePass> SinglePassIssued { get; set; }
         public virtual ICollection<SinglePass> Accompanying { get; set; }
+        public virtual ICollection<TemporaryPass> TemporaryPassIssued { get; set; }
+
         [Required, MaxLength(50)]
         public string Patronymic { get => patronymic; set { patronymic = value; OnPropertyChanged(); } }
         
@@ -90,7 +93,7 @@ namespace stationpases.Model
             Department = TempDepartment;
         }
 
-        public override string ToString() => Name + " " + LastName + " " + Patronymic;
+        public override string ToString() => Name + " " + LastName + " " + Patronymic + " " + Position;
 
         private RelayCommand showDepartmentExtendedView;
         public RelayCommand ShowDepartmentExtendedView

@@ -22,10 +22,13 @@ namespace stationpases.Model
         Document document;
         string patronymic;
         SinglePass singlePass;
+        TemporaryPass temporaryPass;
 
         public Visitor()
         {
+            SinglePass = new SinglePass();
             SinglePasses = new ObservableCollection<SinglePass>();
+            TemporaryPasses = new ObservableCollection<TemporaryPass>();
         }
 
         public int Id { get => id; set { id = value; OnPropertyChanged(); } }
@@ -44,8 +47,11 @@ namespace stationpases.Model
         [Required]
         public virtual Document Document { get => document; set { document = value; OnPropertyChanged(); } }
         public virtual ICollection<SinglePass> SinglePasses { get; set; }
+        public virtual ICollection<TemporaryPass> TemporaryPasses { get; set; }
         public string Patronymic { get => patronymic; set { patronymic = value; OnPropertyChanged(); } }
         [NotMapped]
         public SinglePass SinglePass { get => singlePass; set { singlePass = value; OnPropertyChanged(); } }
+        [NotMapped]
+        public TemporaryPass TemporaryPass { get => temporaryPass; set { temporaryPass = value; OnPropertyChanged(); } }
     }
 }
