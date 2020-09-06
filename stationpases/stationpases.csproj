@@ -105,6 +105,7 @@
       <DependentUpon>TemporaryPassV.xaml</DependentUpon>
     </Compile>
     <Compile Include="VMs\Access.cs" />
+    <Compile Include="VMs\DataErrorInfoTools.cs" />
     <Compile Include="VMs\DbTableMenage.cs" />
     <Compile Include="VMs\Department.cs" />
     <Compile Include="VMs\DialogVM.cs" />

@@ -13,7 +13,7 @@ using System.Windows;
 
 namespace stationpases.Model
 {
-    public class Visitor : VMContext, INotifyPropertyChanged
+    public class Visitor : VMContext, INotifyPropertyChanged, IDataErrorInfo
     {
         int id;
         string name;
@@ -25,7 +25,8 @@ namespace stationpases.Model
         SinglePass singlePass;
         TemporaryPass temporaryPass;
         ShootingPermission shootingPermission;
-        
+        private string error;
+
         StationDBContext db = MainBDContext.GetRef;
         public StationDBContext Db { get { return db; } }
 
@@ -36,6 +37,7 @@ namespace stationpases.Model
             TemporaryPasses = new ObservableCollection<TemporaryPass>();
             ShootingPermissions = new ObservableCollection<ShootingPermission>();
             ShootingPermission = new ShootingPermission { Visitor = this };
+
 
             var stationDBContext = MainBDContext.GetRef;
             stationDBContext.DocumentTypes.Load();
@@ -112,6 +114,26 @@ namespace stationpases.Model
             }
         }
 
+        public string Error { get => error; set => error = value; }
+
+        public string this[string columnName]
+        {
+            get
+            {
+                string error = String.Empty;
+                switch (columnName)
+                {
+                    case "Name":
+                        if (string.IsNullOrEmpty(Name))
+                        {
+                            error = "Введите значение";
+                        }
+                        break;
+                }
+                Error = error;
+                return error;
+            }
+        }
 
     }
 }

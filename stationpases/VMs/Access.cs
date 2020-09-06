@@ -90,7 +90,7 @@ namespace stationpases.VMs
                     case "TempStationFacility":
                         if (TempStationFacility == null)
                         {
-                            error = "Возраст должен быть больше 0 и меньше 100";
+                            error = "Выберите объект";
                         }
                         break;
                 }

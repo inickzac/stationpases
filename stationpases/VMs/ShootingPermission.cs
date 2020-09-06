@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace stationpases.VMs
 {
-   public class ShootingPermission : VMContext, INotifyPropertyChanged, IReadyForDBMenage
+   public class ShootingPermission : VMContext, INotifyPropertyChanged, IReadyForDBMenage, IDataErrorInfo
     {
         int id;
         DateTime? dateOfIssue;
@@ -28,12 +28,15 @@ namespace stationpases.VMs
         Employee tempShootingAllowed;
         string tempShootingPurpose;
         IDbTableMenage dbTableMenage;
+        DataErrorInfoTools dataErrorInfoTools;
         Access access;
+        
 
         public ShootingPermission()
         {
             DbTableMenage = new DbTableMenage<ShootingPermission>(this);
             Accesses = new ObservableCollection<Access>();
+            dataErrorInfoTools = new DataErrorInfoTools(this, this.GetType()); ;
         }
 
         StationDBContext db = MainBDContext.GetRef;
@@ -123,6 +126,8 @@ namespace stationpases.VMs
             }
         }
 
-     
+        public string Error => ((IDataErrorInfo)dataErrorInfoTools).Error;
+
+        public string this[string columnName] => ((IDataErrorInfo)dataErrorInfoTools)[columnName];
     }
 }

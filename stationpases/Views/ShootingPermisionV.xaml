@@ -10,25 +10,25 @@
         <StackPanel>
             <StackPanel>
                 <TextBlock Text="Пропуск выдан"></TextBlock>
-                <DatePicker SelectedDate="{Binding TempDateOfIssue}"></DatePicker>
+                <DatePicker SelectedDate="{Binding TempDateOfIssue, ValidatesOnDataErrors=True}"></DatePicker>
             </StackPanel>
             <StackPanel>
                 <TextBlock Text="Действует до"></TextBlock>
-                <DatePicker SelectedDate="{Binding TempValidUntil }" ></DatePicker>
+                <DatePicker SelectedDate="{Binding TempValidUntil ,ValidatesOnDataErrors=True}" ></DatePicker>
             </StackPanel>
             <StackPanel>
                 <TextBlock Text="Цель съемки"></TextBlock>
-                <TextBox Text="{Binding TempShootingPurpose}"></TextBox>
+                <TextBox Text="{Binding TempShootingPurpose ,ValidatesOnDataErrors=True}"></TextBox>
             </StackPanel>
             <StackPanel>
                 <TextBlock Text="Камера"></TextBlock>
-                <TextBox Text="{Binding TempCameraType}"></TextBox>
+                <TextBox Text="{Binding TempCameraType,ValidatesOnDataErrors=True}"></TextBox>
             </StackPanel>
             <StackPanel>
                 <TextBlock Text="Пропуск выдал"></TextBlock>
                 <StackPanel Orientation="Horizontal">
                     <ComboBox ItemsSource="{Binding Db.Employees.Local}" DisplayMemberPath="Value" 
-                             SelectedItem="{Binding TempShootingAllowed}" MinWidth="80"></ComboBox>
+                             SelectedItem="{Binding TempShootingAllowed,ValidatesOnDataErrors=True}" MinWidth="80"></ComboBox>
                     <Button  Style="{StaticResource ResourceKey=EditTamplateButtom}" 
                              Command="{Binding TempShootingAllowed.DbTableMenage.EditValue}"
                              CommandParameter="{Binding}">

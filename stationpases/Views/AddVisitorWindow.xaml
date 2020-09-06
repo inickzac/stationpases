@@ -33,7 +33,7 @@
                     <TextBox Text="{Binding PlaceOfWork}"/>
                 </StackPanel>
             </StackPanel>
-            <Expander Header="Документ" IsExpanded="True" DataContext="{Binding Document}" Background="#FFF1EFEF">
+            <Expander Header="Документ" IsExpanded="True" DataContext="{Binding Document}" Background="#FFE1FFFC" >
                 <StackPanel>
                     <StackPanel Style="{StaticResource ResourceKey=StackPanelStyle}">
                         <TextBlock Text="Дата выдачи"/>

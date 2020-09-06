@@ -10,21 +10,21 @@
         <StackPanel>
             <StackPanel>
                 <TextBlock Text="Пропуск выдан"></TextBlock>
-                <DatePicker SelectedDate="{Binding TempValidWith}"></DatePicker>
+                <DatePicker SelectedDate="{Binding TempValidWith, ValidatesOnDataErrors=True}"></DatePicker>
             </StackPanel>
             <StackPanel>
                 <TextBlock Text="Действует до"></TextBlock>
-                <DatePicker SelectedDate="{Binding TempValitUntil }" ></DatePicker>
+                <DatePicker SelectedDate="{Binding TempValitUntil, ValidatesOnDataErrors=True }" ></DatePicker>
             </StackPanel>
             <StackPanel>
                 <TextBlock Text="Цель выдачи"></TextBlock>
-                <TextBox Text="{Binding TempPurposeOfIssuance}"></TextBox>
+                <TextBox Text="{Binding TempPurposeOfIssuance, ValidatesOnDataErrors=True}"></TextBox>
             </StackPanel>
             <StackPanel>
                 <TextBlock Text="Пропуск выдал"></TextBlock>
                 <StackPanel Orientation="Horizontal">
                     <ComboBox ItemsSource="{Binding Db.Employees.Local}" DisplayMemberPath="Value" 
-                             SelectedItem="{Binding TempTemporaryPassIssued}" MinWidth="80"></ComboBox>
+                             SelectedItem="{Binding TempTemporaryPassIssued, ValidatesOnDataErrors=True}" MinWidth="80"></ComboBox>
                     <Button  Style="{StaticResource ResourceKey=EditTamplateButtom}" 
                              Command="{Binding TempTemporaryPassIssued.DbTableMenage.EditValue}"
                              CommandParameter="{Binding}">

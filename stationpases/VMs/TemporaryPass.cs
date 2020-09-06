@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace stationpases.VMs
 {
-    public class TemporaryPass : VMContext, INotifyPropertyChanged, IReadyForDBMenage
+    public class TemporaryPass : VMContext, INotifyPropertyChanged, IReadyForDBMenage, IDataErrorInfo
     {
         int id;
         DateTime? validWith;
@@ -24,11 +24,13 @@ namespace stationpases.VMs
         Employee tempTemporaryPassIssued;
         IDbTableMenage dbTableMenage;
         StationDBContext db = MainBDContext.GetRef;
+        
         public StationDBContext Db { get { return db; } }
-
+        DataErrorInfoTools dataErrorInfoTools;
         public TemporaryPass()
         {
             DbTableMenage = new DbTableMenage<TemporaryPass>(this);
+            dataErrorInfoTools = new DataErrorInfoTools(this, GetType());
         }
 
         public int Id { get => id; set { id = value; OnPropertyChanged(); } }
@@ -92,5 +94,8 @@ namespace stationpases.VMs
             }
         }
 
+        public string Error => ((IDataErrorInfo)dataErrorInfoTools).Error;
+
+        public string this[string columnName] => ((IDataErrorInfo)dataErrorInfoTools)[columnName];
     }
 }
