@@ -47,5 +47,9 @@ namespace stationpases.Model
             ValueTemp = Value;
         }
 
+        public void DeleteRelatedData()
+        {
+            
+        }
     }
 }

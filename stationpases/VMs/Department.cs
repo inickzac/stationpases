@@ -29,6 +29,11 @@ namespace stationpases.Model
         public string ValueName => "Подразделение";
         public string ValueTemp { get => tempValue; set { tempValue = value; OnPropertyChanged(); } }
 
+        public void DeleteRelatedData()
+        {
+            
+        }
+
         public void InitTempData()
         {
             ValueTemp = Value;

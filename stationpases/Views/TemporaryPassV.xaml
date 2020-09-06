@@ -1,20 +1,20 @@
-﻿<Window x:Class="stationpases.Views.SinglePassView"
+﻿<Window x:Class="stationpases.Views.TemporaryPassV"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:stationpases.Views"
         mc:Ignorable="d"
-        Title="SinglePassView" Height="257.96" Width="419.101">
+        Title="TemporaryPassV" Height="261.236" Width="439.326">
     <Grid>
         <StackPanel>
             <StackPanel>
                 <TextBlock Text="Пропуск выдан"></TextBlock>
-                <DatePicker SelectedDate="{Binding TempDateOfIssue}"></DatePicker>
+                <DatePicker SelectedDate="{Binding TempValidWith}"></DatePicker>
             </StackPanel>
             <StackPanel>
                 <TextBlock Text="Действует до"></TextBlock>
-                <DatePicker SelectedDate="{Binding TempValidUntil }" ></DatePicker>
+                <DatePicker SelectedDate="{Binding TempValitUntil }" ></DatePicker>
             </StackPanel>
             <StackPanel>
                 <TextBlock Text="Цель выдачи"></TextBlock>
@@ -24,33 +24,16 @@
                 <TextBlock Text="Пропуск выдал"></TextBlock>
                 <StackPanel Orientation="Horizontal">
                     <ComboBox ItemsSource="{Binding Db.Employees.Local}" DisplayMemberPath="Value" 
-                             SelectedItem="{Binding TempSinglePassIssued}" MinWidth="80"></ComboBox>
+                             SelectedItem="{Binding TempTemporaryPassIssued}" MinWidth="80"></ComboBox>
                     <Button  Style="{StaticResource ResourceKey=EditTamplateButtom}" 
-                             Command="{Binding TempSinglePassIssued.DbTableMenage.EditValue}"
+                             Command="{Binding TempTemporaryPassIssued.DbTableMenage.EditValue}"
                              CommandParameter="{Binding}">
                     </Button>
                     <Button  Style="{StaticResource ResourceKey=NewItemButtonTemplate}"
-                             Command="{Binding TempSinglePassIssued.DbTableMenage.AddNewValue}"
+                             Command="{Binding TempTemporaryPassIssued.DbTableMenage.AddNewValue}"
                              CommandParameter="{Binding}">
                     </Button>
-                    <Button  Command="{Binding ShowSinglePassIssuedExtendedView}"                                          
-                             Style="{StaticResource ResourceKey=ExpandButtomTemplate}"></Button>
-                </StackPanel>
-            </StackPanel>
-            <StackPanel>
-                <TextBlock Text="Сопровождающий"></TextBlock>
-                <StackPanel Orientation="Horizontal">
-                    <ComboBox ItemsSource="{Binding Db.Employees.Local}" DisplayMemberPath="Value" 
-                             SelectedItem="{Binding TempAccompanying}" MinWidth="80"></ComboBox>
-                    <Button  Style="{StaticResource ResourceKey=EditTamplateButtom}" 
-                             Command="{Binding TempAccompanying.DbTableMenage.EditValue}"
-                             CommandParameter="{Binding}">
-                    </Button>
-                    <Button  Style="{StaticResource ResourceKey=NewItemButtonTemplate}"
-                             Command="{Binding TempAccompanying.DbTableMenage.AddNewValue}"
-                             CommandParameter="{Binding}">
-                    </Button>
-                    <Button  Command="{Binding ShowAccompanyingExtendedView}"                                          
+                    <Button  Command="{Binding ShowShootingAllowedExtendedView}"                                          
                              Style="{StaticResource ResourceKey=ExpandButtomTemplate}"></Button>
                 </StackPanel>
             </StackPanel>

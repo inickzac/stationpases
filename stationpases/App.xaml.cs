@@ -32,6 +32,11 @@ namespace stationpases
             displayRootRegistry.RegisterWindowType<Department, OneValueV>();
             displayRootRegistry.RegisterWindowType<OneValueExtendedVM<Department>, OneValueExtendedV>();
             displayRootRegistry.RegisterWindowType<OneValueExtendedVM<Employee>, OneValueExtendedV>();
+            displayRootRegistry.RegisterWindowType<TemporaryPass, TemporaryPassV>();
+            displayRootRegistry.RegisterWindowType<ShootingPermission, ShootingPermisionV>();
+            displayRootRegistry.RegisterWindowType<Access, AccessV>();
+            displayRootRegistry.RegisterWindowType<StationFacility, OneValueV>();
+            displayRootRegistry.RegisterWindowType<OneValueExtendedVM<StationFacility>, OneValueExtendedV>();
         }
 
         protected override async void OnStartup(StartupEventArgs e)

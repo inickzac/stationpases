@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:toolkit ="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local="clr-namespace:stationpases.Views"
         mc:Ignorable="d"
         Title="AddVisitorWindow" Height="450" Width="800">
@@ -37,7 +38,6 @@
                     <StackPanel Style="{StaticResource ResourceKey=StackPanelStyle}">
                         <TextBlock Text="Дата выдачи"/>
                         <DatePicker SelectedDate="{Binding DateOfIssue}"></DatePicker>
-
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <StackPanel>
@@ -111,31 +111,64 @@
                         </DataGrid.Columns>
                     </DataGrid>
                     <Button MinHeight="20" Content="Добавить" Background="#FFE9F3E7" 
-                            Command="{Binding SinglePass.DbTableMenage.AddNewValue}"
-                            CommandParameter="{Binding}"></Button>
+                            Command="{Binding AddNewSinglePass}"
+                            ></Button>
                 </StackPanel>
             </Expander>
-            <Expander Header="Временный пропуск">
-                <DataGrid ItemsSource="{Binding TemporaryPasses, Mode=TwoWay}" AutoGenerateColumns="False" SelectedItem="{Binding TemporaryPass}" IsReadOnly="True">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Id" Binding="{Binding Id}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Разрешение выдал" Binding="{Binding TemporaryPassIssued}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Дата начала действия" Binding="{Binding ValidWith}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Дата окончания действия" Binding="{Binding ValitUntil}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Цель выдачи" Binding="{Binding PurposeOfIssuance}"></DataGridTextColumn>
-                        <DataGridTemplateColumn>
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Button Content="Удалить" Command="{Binding DbTableMenage.DeleteInDB}" Background="#FFE4ACAC"  />
-                                        <Button Content="Изменить" Command="{Binding DbTableMenage.EditValue}" />
-                                        <Button Content="Генерировать документ" />
-                                    </StackPanel>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                    </DataGrid.Columns>
-                </DataGrid>
+            <Expander Header="Временный пропуск" Background="#FFEFF1FF">
+                <StackPanel>
+                    <DataGrid ItemsSource="{Binding TemporaryPasses, Mode=TwoWay}" AutoGenerateColumns="False" SelectedItem="{Binding TemporaryPass}" IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Id" Binding="{Binding Id}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Разрешение выдал" Binding="{Binding TemporaryPassIssued}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Дата начала действия" Binding="{Binding ValidWith}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Дата окончания действия" Binding="{Binding ValitUntil}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Цель выдачи" Binding="{Binding PurposeOfIssuance}"></DataGridTextColumn>
+                            <DataGridTemplateColumn>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Button Content="Удалить" Command="{Binding DbTableMenage.DeleteInDB}" Background="#FFE4ACAC"  />
+                                            <Button Content="Изменить" Command="{Binding DbTableMenage.EditValue}" />
+                                            <Button Content="Генерировать документ" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button MinHeight="20" Content="Добавить" Background="#FFEFF1FF"
+                            Command="{Binding AddNewTemporaryPass}"
+                            ></Button>
+                </StackPanel>
+            </Expander>
+            <Expander Header="Разрешение на съемку" Background="#FFF7F2EE" >
+                <StackPanel>
+                    <DataGrid ItemsSource="{Binding ShootingPermissions, Mode=TwoWay}" AutoGenerateColumns="False" 
+                              SelectedItem="{Binding ShootingPermission}" IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Id" Binding="{Binding Id}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Съемку разрешил" Binding="{Binding ShootingAllowed}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Дата начала действия" Binding="{Binding DateOfIssue}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Дата окончания действия" Binding="{Binding ValidUntil}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Цель съемки" Binding="{Binding ShootingPurpose}"></DataGridTextColumn>
+                            <DataGridTemplateColumn>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Button Content="Удалить" Command="{Binding DbTableMenage.DeleteInDB}" Background="#FFE4ACAC"  />
+                                            <Button Content="Изменить" Command="{Binding DbTableMenage.EditValue}" />
+                                            <Button Content="Генерировать документ" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button MinHeight="20" Content="Добавить" Background="#FFF7F2EE"
+                            Command="{Binding AddNewShootingPermissions}"
+                            ></Button>
+                </StackPanel>
             </Expander>
         </StackPanel>
     </Grid>

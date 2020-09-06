@@ -17,9 +17,7 @@
         public StationDBContext()
             : base("name=StationDBContext")
         {
-            DocumentTypes.Load();
-            IssuingAuthorities.Load();
-            Departments.Load();
+          
         }
 
         public DbSet<Document> Documents { get; set; }
@@ -30,7 +28,9 @@
         public DbSet<SinglePass> SinglePasses { get; set; }
         public DbSet<IssuingAuthority> IssuingAuthorities { get; set; }
         public DbSet<TemporaryPass> TemporaryPasses { get; set; }
-       
+        public DbSet<StationFacility> StationFacilities { get; set; }       
+        public DbSet<Access>  Accesses { get; set; }
+        public DbSet<ShootingPermission> ShootingPermissions { get; set; }
     }
 
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using stationpases.VMs;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -69,8 +70,8 @@ namespace stationpases.Model
                 DateOfIssue = DateTime.Now,
                 ValidUntil = DateTime.Now,
                 Visitor = Visitor,
-                Accompanying = Employee2,
-                SinglePassIssued = Employee2
+                Accompanying = Employee,
+                SinglePassIssued = Employee
             });
 
             for (int i = 0; i < 100; i++)
@@ -83,26 +84,71 @@ namespace stationpases.Model
                 PurposeOfIssuance = "Посабирать грибы",
                 ValidWith = DateTime.Now,
                 ValitUntil = DateTime.Now,
-                TemporaryPassIssued = Employee2,
+                TemporaryPassIssued = Employee,
                 Visitor = Visitor
 
-            }) ;
+            });
 
             context.TemporaryPasses.Add(new VMs.TemporaryPass
             {
                 PurposeOfIssuance = "Выгул собак",
                 ValidWith = DateTime.Now,
                 ValitUntil = DateTime.Now,
-                TemporaryPassIssued = Employee,
+                TemporaryPassIssued = Employee2,
                 Visitor = Visitor
             });
 
 
             context.DocumentTypes.Add(new DocumentType { Value = "Паспорт" });
             context.SaveChanges();
+            InitFacilitys(context);
+            InitShootingPermission(context, Visitor);
 
         }
 
+        void InitFacilitys(StationDBContext context)
+        {
 
+            for (int i = 0; i < 50; i++)
+            {
+                context.StationFacilities.Add(new StationFacility { Value = $"Обьект {i}" });
+            }
+
+            context.SaveChanges();
+        }
+        List<Access> InitAccess(StationDBContext context)
+        {
+            List<Access> accesses = new List<Access>();
+            var stationFacilities = new List<StationFacility>();
+            var random = new Random();
+            var quantityOfSF = random.Next(10);
+            var boolList = new List<bool> { true, false };
+
+            for (int i = 0; i < quantityOfSF; i++)
+            {
+                var SFNumber = random.Next(context.StationFacilities.Count() - 1);
+                accesses.Add(new Access
+                {
+                    StationFacility = context.StationFacilities.ToList()[SFNumber],
+                    AccessIsAllowed = boolList[random.Next(0, 1)]
+                });
+            }
+            return accesses;
+        }
+
+        void InitShootingPermission(StationDBContext context, Visitor parent )
+        {
+            context.ShootingPermissions.Add(new ShootingPermission
+            {
+                CameraType = "Sony",
+                DateOfIssue = DateTime.Now,
+                ValidUntil = DateTime.Now,
+                ShootingPurpose = "Шпионские съеки",
+                ShootingAllowed = context.Employees.First(),
+                Accesses = InitAccess(context),
+                Visitor = parent
+            }); 
+            context.SaveChanges();
+        }
     }
 }

@@ -14,15 +14,17 @@ namespace stationpases.VMs
     public class TemporaryPass : VMContext, INotifyPropertyChanged, IReadyForDBMenage
     {
         int id;
-        DateTime validWith;
-        DateTime valitUntil;
+        DateTime? validWith;
+        DateTime? valitUntil;
         string purposeOfIssuance;
         Employee temporaryPassIssued;
-        DateTime tempValidWith;
-        DateTime tempValitUntil;
+        DateTime? tempValidWith;
+        DateTime? tempValitUntil;
         string tempPurposeOfIssuance;
         Employee tempTemporaryPassIssued;
         IDbTableMenage dbTableMenage;
+        StationDBContext db = MainBDContext.GetRef;
+        public StationDBContext Db { get { return db; } }
 
         public TemporaryPass()
         {
@@ -31,18 +33,18 @@ namespace stationpases.VMs
 
         public int Id { get => id; set { id = value; OnPropertyChanged(); } }
         [Required]
-        public DateTime ValidWith { get => validWith; set { validWith = value; OnPropertyChanged(); } }
+        public DateTime? ValidWith { get => validWith; set { validWith = value; OnPropertyChanged(); } }
         [Required]
-        public DateTime ValitUntil { get => valitUntil; set { valitUntil = value; OnPropertyChanged(); } }
+        public DateTime? ValitUntil { get => valitUntil; set { valitUntil = value; OnPropertyChanged(); } }
         [Required, MaxLength(500)]
         public string PurposeOfIssuance { get => purposeOfIssuance; set { purposeOfIssuance = value; OnPropertyChanged(); } }
         [InverseProperty("TemporaryPassIssued"), Required]
         public virtual Employee TemporaryPassIssued { get => temporaryPassIssued; set { temporaryPassIssued = value; OnPropertyChanged(); } }
 
         [NotMapped]
-        public DateTime TempValidWith { get => tempValidWith; set { tempValidWith = value; OnPropertyChanged(); } }
+        public DateTime? TempValidWith { get => tempValidWith; set { tempValidWith = value; OnPropertyChanged(); } }
         [NotMapped]
-        public DateTime TempValitUntil { get => tempValitUntil; set { tempValitUntil = value; OnPropertyChanged(); } }
+        public DateTime? TempValitUntil { get => tempValitUntil; set { tempValitUntil = value; OnPropertyChanged(); } }
         [NotMapped]
         public string TempPurposeOfIssuance { get => tempPurposeOfIssuance; set { tempPurposeOfIssuance = value; OnPropertyChanged(); } }
         [NotMapped]
@@ -69,5 +71,26 @@ namespace stationpases.VMs
             ValidWith = TempValidWith;
             ValitUntil = TempValitUntil;
         }
+
+        public void DeleteRelatedData()
+        {
+            
+        }
+
+        private RelayCommand showTemporaryPassExtendedView;
+        public RelayCommand ShowTemporaryPassExtendedView
+        {
+            get
+            {
+                return showTemporaryPassExtendedView ??
+                  (showTemporaryPassExtendedView = new RelayCommand(obj =>
+                  {
+                      if (TemporaryPassIssued == null) TemporaryPassIssued = new Employee();
+                      TemporaryPassIssued.DbTableMenage.ShowExtendedView(
+                          (objCB) => { this.TemporaryPassIssued = (Employee)objCB; });
+                  }));
+            }
+        }
+
     }
 }

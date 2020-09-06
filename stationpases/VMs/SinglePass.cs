@@ -14,17 +14,17 @@ namespace stationpases.Model
     public class SinglePass : VMContext, INotifyPropertyChanged, IReadyForDBMenage
     {
         int id;
-        DateTime dateOfIssue;
-        DateTime validUntil;
+        DateTime? dateOfIssue;
+        DateTime? validUntil;
         string purposeOfIssuance;
         Employee singlePassIssued;
         Employee accompanying;
         Visitor visitor;
-        
+
         IDbTableMenage dbTableMenage;
 
-        DateTime tempDateOfIssue;
-        DateTime tempValidUntil;
+        DateTime? tempDateOfIssue;
+        DateTime? tempValidUntil;
         string tempPurposeOfIssuance;
         Employee tempSinglePassIssued;
         Employee tempAccompanying;
@@ -37,10 +37,10 @@ namespace stationpases.Model
         }
 
         public int Id { get => id; set { id = value; OnPropertyChanged(); } }
-        [Required]
-        public DateTime DateOfIssue { get => dateOfIssue; set { dateOfIssue = value; OnPropertyChanged(); } }
-        [Required]
-        public DateTime ValidUntil { get => validUntil; set { validUntil = value; OnPropertyChanged(); } }
+        [Required, Column(TypeName = "datetime2")]
+        public DateTime? DateOfIssue { get => dateOfIssue; set { dateOfIssue = value; OnPropertyChanged(); } }
+        [Required, Column(TypeName = "datetime2")]
+        public DateTime? ValidUntil { get => validUntil; set { validUntil = value; OnPropertyChanged(); } }
         [Required, MaxLength(500)]
         public string PurposeOfIssuance { get => purposeOfIssuance; set { purposeOfIssuance = value; OnPropertyChanged(); } }
         [InverseProperty("SinglePassIssued")]
@@ -51,9 +51,9 @@ namespace stationpases.Model
         public IDbTableMenage DbTableMenage { get => dbTableMenage; set { dbTableMenage = value; OnPropertyChanged(); } }
 
         [NotMapped]
-        public DateTime TempDateOfIssue { get => tempDateOfIssue; set { tempDateOfIssue = value; OnPropertyChanged(); } }
+        public DateTime? TempDateOfIssue { get => tempDateOfIssue; set { tempDateOfIssue = value; OnPropertyChanged(); } }
         [NotMapped]
-        public DateTime TempValidUntil { get => tempValidUntil; set { tempValidUntil = value; OnPropertyChanged(); } }
+        public DateTime? TempValidUntil { get => tempValidUntil; set { tempValidUntil = value; OnPropertyChanged(); } }
         [NotMapped]
         public string TempPurposeOfIssuance { get => tempPurposeOfIssuance; set { tempPurposeOfIssuance = value; OnPropertyChanged(); } }
         [NotMapped]
@@ -71,7 +71,7 @@ namespace stationpases.Model
         }
 
         public bool IsUsedInOtherTables() => false;
-       
+
 
         public void SaveTempData()
         {
@@ -80,6 +80,11 @@ namespace stationpases.Model
             SinglePassIssued = TempSinglePassIssued;
             Accompanying = TempAccompanying;
             PurposeOfIssuance = TempPurposeOfIssuance;
+        }
+
+        public void DeleteRelatedData()
+        {
+            
         }
 
         private RelayCommand showSinglePassIssuedExtendedView;
@@ -109,7 +114,7 @@ namespace stationpases.Model
                           (objCB) => { this.Accompanying = (Employee)objCB; });
                   }));
             }
-        }
+        }     
 
     }
 }

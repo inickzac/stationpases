@@ -51,7 +51,7 @@ namespace stationpases.VMs
                       db.Set<T>().AddOrUpdate(menageTable);
                       db.SaveChanges();
                       HidePresentation(obj);
-                  }, obj => menageTable != null));
+                  }, obj => !IsIValidationDataErrorHasError()));
             }
         }
         public RelayCommand DeleteInDB
@@ -64,6 +64,7 @@ namespace stationpases.VMs
                       if (!menageTable.IsUsedInOtherTables())
                       {
                           StationDBContext db = MainBDContext.GetRef;
+                          menageTable.DeleteRelatedData();
                           db.Set<T>().Remove(menageTable);
                           db.SaveChanges();
                       }
@@ -103,6 +104,30 @@ namespace stationpases.VMs
             if (presentationVM == null) displayRootRegistry.HidePresentation(menageTable);
             else displayRootRegistry.HidePresentation(presentationVM);
         }
+
+        private bool IsIValidationDataErrorHasError()
+        {
+            var Error = (menageTable as IDataErrorInfo)?.Error;
+            if (string.IsNullOrEmpty(Error)) return false;
+            return true;
+        }
+
+        private RelayCommand saveLocal;
+        public RelayCommand SaveLocal
+        {
+            get
+            {
+                return saveLocal ??
+                  (saveLocal = new RelayCommand(obj =>
+                  {
+                      StationDBContext db = MainBDContext.GetRef;                    
+                      menageTable.SaveTempData();
+                      db.Set<T>().AddOrUpdate(menageTable);
+                      HidePresentation(obj);
+                  }, obj => !IsIValidationDataErrorHasError()));
+            }
+        }
+
 
     }
 }

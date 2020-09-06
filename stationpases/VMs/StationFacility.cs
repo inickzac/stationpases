@@ -1,5 +1,4 @@
-﻿using stationpases.Model;
-using stationpases.VMs.interfeses;
+﻿using stationpases.VMs.interfeses;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,28 +10,28 @@ using System.Threading.Tasks;
 
 namespace stationpases.VMs
 {
-    public class IssuingAuthority : VMContext, INotifyPropertyChanged, IOneValue, IReadyForDBMenage
+    public class StationFacility : VMContext, INotifyPropertyChanged, IOneValue, IReadyForDBMenage
     {
         int id;
         string value;
         string tempValue;
 
-        public IssuingAuthority()
+        public StationFacility()
         {
-            Documents = new List<Document>();
-            DbTableMenage = new OneValueDBMenage<IssuingAuthority>(this);
+            Accesses = new List<Access>();
+            DbTableMenage = new OneValueDBMenage<StationFacility>(this);
             Value = string.Empty;
         }
-        public string ValueName { get => "Орган выдавший документ"; }
+        public string ValueName { get => "Объект станции"; }
         public int Id { get => id; set { id = value; OnPropertyChanged(); } }
         [MaxLength(100), Required]
         public string Value { get => value; set { this.value = value; OnPropertyChanged(); } }
         [NotMapped]
         public string ValueTemp { get => tempValue; set { tempValue = value; OnPropertyChanged(nameof(Value)); } }
-        public virtual IList<Document> Documents { get; set; }
+        public virtual IList<Access> Accesses { get; set; }
         [NotMapped]
         public IOneValueBDMenage DbTableMenage { get; set; }
-        public bool IsUsedInOtherTables() => Documents.Any();
+        public bool IsUsedInOtherTables() => Accesses.Any();
         public void SaveTempData()
         {
             Value = ValueTemp;

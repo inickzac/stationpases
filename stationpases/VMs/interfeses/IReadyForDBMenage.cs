@@ -12,6 +12,10 @@ namespace stationpases.VMs.interfeses
         bool IsUsedInOtherTables();
         void SaveTempData();
         void InitTempData();
+        void DeleteRelatedData();
+
+
+
 
     }
 }

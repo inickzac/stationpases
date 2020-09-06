@@ -1,4 +1,5 @@
-﻿using stationpases.VMs;
+﻿using stationpases.Views;
+using stationpases.VMs;
 using stationpases.VMs.interfeses;
 using System;
 using System.Collections.Generic;
@@ -34,6 +35,7 @@ namespace stationpases.Model
             SinglePassIssued = new List<SinglePass>();
             Accompanying = new List<SinglePass>();
             TemporaryPassIssued = new List<TemporaryPass>();
+            ShootingAllowed = new List<ShootingPermission>();
         }
 
         public IOneValueBDMenage DbTableMenage { get; set; }
@@ -53,6 +55,7 @@ namespace stationpases.Model
         public virtual ICollection<SinglePass> SinglePassIssued { get; set; }
         public virtual ICollection<SinglePass> Accompanying { get; set; }
         public virtual ICollection<TemporaryPass> TemporaryPassIssued { get; set; }
+        public virtual ICollection<ShootingPermission> ShootingAllowed { get; set; }
 
         [Required, MaxLength(50)]
         public string Patronymic { get => patronymic; set { patronymic = value; OnPropertyChanged(); } }
@@ -94,6 +97,11 @@ namespace stationpases.Model
         }
 
         public override string ToString() => Name + " " + LastName + " " + Patronymic + " " + Position;
+
+        public void DeleteRelatedData()
+        {
+            
+        }
 
         private RelayCommand showDepartmentExtendedView;
         public RelayCommand ShowDepartmentExtendedView

@@ -1,0 +1,70 @@
+﻿<Window x:Class="stationpases.Views.ShootingPermisionV"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:stationpases.Views"
+        mc:Ignorable="d"
+        Title="ShootingPermisionV" Height="450" Width="800">
+    <Grid>
+        <StackPanel>
+            <StackPanel>
+                <TextBlock Text="Пропуск выдан"></TextBlock>
+                <DatePicker SelectedDate="{Binding TempDateOfIssue}"></DatePicker>
+            </StackPanel>
+            <StackPanel>
+                <TextBlock Text="Действует до"></TextBlock>
+                <DatePicker SelectedDate="{Binding TempValidUntil }" ></DatePicker>
+            </StackPanel>
+            <StackPanel>
+                <TextBlock Text="Цель съемки"></TextBlock>
+                <TextBox Text="{Binding TempShootingPurpose}"></TextBox>
+            </StackPanel>
+            <StackPanel>
+                <TextBlock Text="Камера"></TextBlock>
+                <TextBox Text="{Binding TempCameraType}"></TextBox>
+            </StackPanel>
+            <StackPanel>
+                <TextBlock Text="Пропуск выдал"></TextBlock>
+                <StackPanel Orientation="Horizontal">
+                    <ComboBox ItemsSource="{Binding Db.Employees.Local}" DisplayMemberPath="Value" 
+                             SelectedItem="{Binding TempShootingAllowed}" MinWidth="80"></ComboBox>
+                    <Button  Style="{StaticResource ResourceKey=EditTamplateButtom}" 
+                             Command="{Binding TempShootingAllowed.DbTableMenage.EditValue}"
+                             CommandParameter="{Binding}">
+                    </Button>
+                    <Button  Style="{StaticResource ResourceKey=NewItemButtonTemplate}"
+                             Command="{Binding TempShootingAllowed.DbTableMenage.AddNewValue}"
+                             CommandParameter="{Binding}">
+                    </Button>
+                    <Button  Command="{Binding ShowShootingAllowedExtendedView}"                                          
+                             Style="{StaticResource ResourceKey=ExpandButtomTemplate}"></Button>
+                </StackPanel>
+            </StackPanel>
+            <Expander Header="Разрешения" Background="#FFEBF9EA">
+                <StackPanel>
+                    <DataGrid ItemsSource="{Binding Accesses}" AutoGenerateColumns="False" CanUserAddRows="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Id" Binding="{Binding Id}" IsReadOnly="True"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Объект станции" Binding="{Binding TempStationFacility.Value}"></DataGridTextColumn>
+                            <DataGridCheckBoxColumn Header="Съемка разрешена" Binding="{Binding TempAccessIsAllowed}"></DataGridCheckBoxColumn>
+                            <DataGridTemplateColumn>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="Удалить" Command="{Binding DbTableMenage.DeleteInDB}" Background="#FFE4ACAC"  />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button MinHeight="20" Content="Добавить объект станции" Background="#FFEBF9EA" Command="{Binding AddNewAccess}"
+                            CommandParameter="{Binding}"></Button>
+                </StackPanel>
+            </Expander>
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                <Button Command="{Binding DbTableMenage.SaveInBD}">Сохранить</Button>
+                <Button  Command="{Binding DbTableMenage.Cancel}">Отмена</Button>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

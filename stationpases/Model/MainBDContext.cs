@@ -18,10 +18,11 @@ namespace stationpases.Model
         {
             get
             {
-                if (stationDBContext == null) stationDBContext = new StationDBContext();
-                stationDBContext.DocumentTypes.Load();
-                stationDBContext.IssuingAuthorities.Load();
-                stationDBContext.Departments.Load();
+                if (stationDBContext == null)
+                {
+                    stationDBContext = new StationDBContext();
+                   
+                }
                 return stationDBContext;
             }
         }

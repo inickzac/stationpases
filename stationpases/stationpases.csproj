@@ -58,6 +58,24 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WPFtoolkitFramework, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WPFtoolkitFramework.1.0.7.5\lib\net45\WPFtoolkitFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock, Version=4.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.4.0.1\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero, Version=4.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.4.0.1\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro, Version=4.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.4.0.1\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010, Version=4.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.4.0.1\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit, Version=4.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.4.0.1\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -65,6 +83,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\DBInitialaizer.cs" />
+    <Compile Include="Views\AccessV.xaml.cs">
+      <DependentUpon>AccessV.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\DialogWindowV.xaml.cs">
       <DependentUpon>DialogWindowV.xaml</DependentUpon>
     </Compile>
@@ -74,9 +95,16 @@
     <Compile Include="Views\OneValueExtendedV.xaml.cs">
       <DependentUpon>OneValueExtendedV.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ShootingPermisionV.xaml.cs">
+      <DependentUpon>ShootingPermisionV.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SinglePassView.xaml.cs">
       <DependentUpon>SinglePassView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\TemporaryPassV.xaml.cs">
+      <DependentUpon>TemporaryPassV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VMs\Access.cs" />
     <Compile Include="VMs\DbTableMenage.cs" />
     <Compile Include="VMs\Department.cs" />
     <Compile Include="VMs\DialogVM.cs" />
@@ -91,7 +119,9 @@
     <Compile Include="VMs\interfeses\IOneValue.cs" />
     <Compile Include="VMs\OneValue\OneValueDBMenage.cs" />
     <Compile Include="VMs\OneValue\OneValueExtendedVM.cs" />
+    <Compile Include="VMs\ShootingPermission.cs" />
     <Compile Include="VMs\SinglePass.cs" />
+    <Compile Include="VMs\StationFacility.cs" />
     <Compile Include="VMs\TemporaryPass.cs" />
     <Compile Include="VMs\Visitor.cs" />
     <Compile Include="Views\AddVisitorWindow.xaml.cs">
@@ -115,6 +145,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\AccessV.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\AddVisitorWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -135,7 +169,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\ShootingPermisionV.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\SinglePassView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TemporaryPassV.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
