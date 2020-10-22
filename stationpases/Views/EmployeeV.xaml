@@ -10,25 +10,25 @@
         <StackPanel>
             <StackPanel>
                 <TextBlock Text="Имя"></TextBlock>
-                <TextBox Text="{Binding TempName}"></TextBox>
+                <TextBox Text="{Binding TempName, ValidatesOnDataErrors=True}"></TextBox>
             </StackPanel>
             <StackPanel>
                 <TextBlock Text="Фамилия"></TextBlock>
-                <TextBox Text="{Binding TempLastName}"></TextBox>
+                <TextBox Text="{Binding TempLastName, ValidatesOnDataErrors=True}"></TextBox>
             </StackPanel>
             <StackPanel>
                 <TextBlock Text="Отчество"></TextBlock>
-                <TextBox Text="{Binding TempPatronymic}"></TextBox>
+                <TextBox Text="{Binding TempPatronymic, ValidatesOnDataErrors=True}"></TextBox>
             </StackPanel>
             <StackPanel>
                 <TextBlock Text="Должность"></TextBlock>
-                <TextBox Text="{Binding TempPosition}"></TextBox>
+                <TextBox Text="{Binding TempPosition, ValidatesOnDataErrors=True}"></TextBox>
             </StackPanel>
             <StackPanel>
                 <TextBlock Text="Подразделение"></TextBlock>
                 <StackPanel Orientation="Horizontal">
                     <ComboBox ItemsSource="{Binding Db.Departments.Local}" DisplayMemberPath="Value" 
-                                  SelectedItem="{Binding TempDepartment}" MinWidth="80"></ComboBox>
+                                  SelectedItem="{Binding TempDepartment, ValidatesOnDataErrors=True}" MinWidth="80"></ComboBox>
                     <Button  Style="{StaticResource ResourceKey=EditTamplateButtom}" 
                                          Command="{Binding TempDepartment.DbTableMenage.EditValue}"
                                          CommandParameter="{Binding}">

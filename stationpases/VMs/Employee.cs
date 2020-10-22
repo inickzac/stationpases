@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace stationpases.Model
 {
-    public class Employee : VMContext, INotifyPropertyChanged, IOneValue, IReadyForDBMenage
+    public class Employee : VMContext, INotifyPropertyChanged, IOneValue, IReadyForDBMenage, IDataErrorInfo
     {
         int id;
         string name;
@@ -26,6 +26,7 @@ namespace stationpases.Model
         string tempPatronymic;
         string tempPosition;
         Department tempDepartment;
+        DataErrorInfoTools dataErrorInfoTools;
         StationDBContext db = MainBDContext.GetRef;
         public StationDBContext Db { get { return db; } }
 
@@ -36,6 +37,7 @@ namespace stationpases.Model
             Accompanying = new List<SinglePass>();
             TemporaryPassIssued = new List<TemporaryPass>();
             ShootingAllowed = new List<ShootingPermission>();
+            dataErrorInfoTools = new DataErrorInfoTools(this, GetType());
         }
 
         public IOneValueBDMenage DbTableMenage { get; set; }
@@ -118,6 +120,8 @@ namespace stationpases.Model
             }
         }
 
+        public string Error => ((IDataErrorInfo)dataErrorInfoTools).Error;
 
+        public string this[string columnName] => ((IDataErrorInfo)dataErrorInfoTools)[columnName];
     }
 }

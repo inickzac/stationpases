@@ -27,7 +27,7 @@ namespace stationpases.Model
         public virtual ICollection<Employee> Employees { get; set; }
         public IOneValueBDMenage DbTableMenage { get; set; }
         public string ValueName => "Подразделение";
-        public string ValueTemp { get => tempValue; set { tempValue = value; OnPropertyChanged(); } }
+        public string TempValue { get => tempValue; set { tempValue = value; OnPropertyChanged(); } }
 
         public void DeleteRelatedData()
         {
@@ -36,14 +36,14 @@ namespace stationpases.Model
 
         public void InitTempData()
         {
-            ValueTemp = Value;
+            TempValue = Value;
         }
 
         public bool IsUsedInOtherTables() => Employees.Any();
       
         public void SaveTempData()
         {
-            Value = ValueTemp;
+            Value = TempValue;
         }
     }
 }

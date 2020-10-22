@@ -27,18 +27,18 @@ namespace stationpases.VMs
         [MaxLength(100), Required]
         public string Value { get => value; set { this.value = value; OnPropertyChanged(); } }
         [NotMapped]
-        public string ValueTemp { get => tempValue; set { tempValue = value; OnPropertyChanged(nameof(Value)); } }
+        public string TempValue { get => tempValue; set { tempValue = value; OnPropertyChanged(nameof(Value)); } }
         public virtual IList<Access> Accesses { get; set; }
         [NotMapped]
         public IOneValueBDMenage DbTableMenage { get; set; }
         public bool IsUsedInOtherTables() => Accesses.Any();
         public void SaveTempData()
         {
-            Value = ValueTemp;
+            Value = TempValue;
         }
         public void InitTempData()
         {
-            ValueTemp = Value;
+            TempValue = Value;
         }
 
         public void DeleteRelatedData()

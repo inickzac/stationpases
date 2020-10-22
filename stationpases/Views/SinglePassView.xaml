@@ -10,27 +10,35 @@
         <StackPanel>
             <StackPanel>
                 <TextBlock Text="Пропуск выдан"></TextBlock>
-                <DatePicker SelectedDate="{Binding TempDateOfIssue}"></DatePicker>
+                <DatePicker SelectedDate="{Binding TempDateOfIssue, ValidatesOnDataErrors=True}"></DatePicker>
             </StackPanel>
             <StackPanel>
                 <TextBlock Text="Действует до"></TextBlock>
-                <DatePicker SelectedDate="{Binding TempValidUntil }" ></DatePicker>
+                <DatePicker SelectedDate="{Binding TempValidUntil, ValidatesOnDataErrors=True }" ></DatePicker>
             </StackPanel>
             <StackPanel>
                 <TextBlock Text="Цель выдачи"></TextBlock>
-                <TextBox Text="{Binding TempPurposeOfIssuance}"></TextBox>
+                <TextBox Text="{Binding TempPurposeOfIssuance, ValidatesOnDataErrors=True}"></TextBox>
             </StackPanel>
             <StackPanel>
                 <TextBlock Text="Пропуск выдал"></TextBlock>
                 <StackPanel Orientation="Horizontal">
                     <ComboBox ItemsSource="{Binding Db.Employees.Local}" DisplayMemberPath="Value" 
-                             SelectedItem="{Binding TempSinglePassIssued}" MinWidth="80"></ComboBox>
-                    <Button  Style="{StaticResource ResourceKey=EditTamplateButtom}" 
-                             Command="{Binding TempSinglePassIssued.DbTableMenage.EditValue}"
+                             SelectedItem="{Binding TempSinglePassIssued, ValidatesOnDataErrors=True}" MinWidth="80"></ComboBox>
+                    <Button  Command="{Binding TempSinglePassIssued.DbTableMenage.EditValue}"
                              CommandParameter="{Binding}">
+                        <Button.Style>
+                            <Style BasedOn="{StaticResource ResourceKey=EditTamplateButtom}" TargetType="Button">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding TempSinglePassIssued}" Value="{x:Null}">
+                                        <Setter Property="IsEnabled" Value="False" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
                     </Button>
                     <Button  Style="{StaticResource ResourceKey=NewItemButtonTemplate}"
-                             Command="{Binding TempSinglePassIssued.DbTableMenage.AddNewValue}"
+                             Command="{Binding EmployeeTools.DbTableMenage.AddNewValue}"
                              CommandParameter="{Binding}">
                     </Button>
                     <Button  Command="{Binding ShowSinglePassIssuedExtendedView}"                                          
@@ -41,13 +49,21 @@
                 <TextBlock Text="Сопровождающий"></TextBlock>
                 <StackPanel Orientation="Horizontal">
                     <ComboBox ItemsSource="{Binding Db.Employees.Local}" DisplayMemberPath="Value" 
-                             SelectedItem="{Binding TempAccompanying}" MinWidth="80"></ComboBox>
-                    <Button  Style="{StaticResource ResourceKey=EditTamplateButtom}" 
-                             Command="{Binding TempAccompanying.DbTableMenage.EditValue}"
+                             SelectedItem="{Binding TempAccompanying, ValidatesOnDataErrors=True}" MinWidth="80"></ComboBox>
+                    <Button  Command="{Binding TempAccompanying.DbTableMenage.EditValue}"
                              CommandParameter="{Binding}">
+                        <Button.Style>
+                            <Style BasedOn="{StaticResource ResourceKey=EditTamplateButtom}" TargetType="Button">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding TempAccompanying}" Value="{x:Null}">
+                                        <Setter Property="IsEnabled" Value="False" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
                     </Button>
                     <Button  Style="{StaticResource ResourceKey=NewItemButtonTemplate}"
-                             Command="{Binding TempAccompanying.DbTableMenage.AddNewValue}"
+                             Command="{Binding EmployeeTools.DbTableMenage.AddNewValue}"
                              CommandParameter="{Binding}">
                     </Button>
                     <Button  Command="{Binding ShowAccompanyingExtendedView}"                                          

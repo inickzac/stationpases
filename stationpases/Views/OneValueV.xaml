@@ -9,7 +9,7 @@
     <Grid>
         <StackPanel>
             <TextBlock Text="{Binding ValueName}"></TextBlock>
-            <TextBox Text="{Binding ValueTemp, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <TextBox Text="{Binding TempValue, UpdateSourceTrigger=PropertyChanged}"></TextBox>
             <StackPanel Orientation="Horizontal">
                 <Button Command="{Binding DbTableMenage.SaveInBD}">Сохранить</Button>
                 <Button Command="{Binding DbTableMenage.Cancel}">Отмена</Button>

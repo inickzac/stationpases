@@ -23,6 +23,7 @@ namespace stationpases.VMs
         string tempPurposeOfIssuance;
         Employee tempTemporaryPassIssued;
         IDbTableMenage dbTableMenage;
+        
         StationDBContext db = MainBDContext.GetRef;
         
         public StationDBContext Db { get { return db; } }
@@ -32,7 +33,8 @@ namespace stationpases.VMs
             DbTableMenage = new DbTableMenage<TemporaryPass>(this);
             dataErrorInfoTools = new DataErrorInfoTools(this, GetType());
         }
-
+        [NotMapped]
+        public Employee EmployeeTools { get; set; } = new Employee();
         public int Id { get => id; set { id = value; OnPropertyChanged(); } }
         [Required]
         public DateTime? ValidWith { get => validWith; set { validWith = value; OnPropertyChanged(); } }
@@ -51,7 +53,6 @@ namespace stationpases.VMs
         public string TempPurposeOfIssuance { get => tempPurposeOfIssuance; set { tempPurposeOfIssuance = value; OnPropertyChanged(); } }
         [NotMapped]
         public  Employee TempTemporaryPassIssued { get => tempTemporaryPassIssued; set { tempTemporaryPassIssued = value; OnPropertyChanged(); } }
-
         public virtual Visitor Visitor { get; set; }
         public IDbTableMenage DbTableMenage { get => dbTableMenage; set => dbTableMenage = value; }
 
@@ -62,10 +63,7 @@ namespace stationpases.VMs
             TempValidWith = ValidWith;
             TempValitUntil = ValitUntil;
         }
-
         public bool IsUsedInOtherTables() => false;
-
-
         public void SaveTempData()
         {
             PurposeOfIssuance = TempPurposeOfIssuance;
@@ -73,7 +71,6 @@ namespace stationpases.VMs
             ValidWith = TempValidWith;
             ValitUntil = TempValitUntil;
         }
-
         public void DeleteRelatedData()
         {
             
@@ -87,9 +84,10 @@ namespace stationpases.VMs
                 return showTemporaryPassExtendedView ??
                   (showTemporaryPassExtendedView = new RelayCommand(obj =>
                   {
-                      if (TemporaryPassIssued == null) TemporaryPassIssued = new Employee();
-                      TemporaryPassIssued.DbTableMenage.ShowExtendedView(
-                          (objCB) => { this.TemporaryPassIssued = (Employee)objCB; });
+                      if (TempTemporaryPassIssued == null) TempTemporaryPassIssued = new Employee();
+                      TempTemporaryPassIssued.DbTableMenage.ShowExtendedView(
+                          (objCB) =>
+                          { this.TempTemporaryPassIssued = (Employee)objCB; });
                   }));
             }
         }
@@ -97,5 +95,11 @@ namespace stationpases.VMs
         public string Error => ((IDataErrorInfo)dataErrorInfoTools).Error;
 
         public string this[string columnName] => ((IDataErrorInfo)dataErrorInfoTools)[columnName];
+    
+       
+
+    
+
+    
     }
 }

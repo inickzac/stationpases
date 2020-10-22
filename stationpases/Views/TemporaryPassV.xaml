@@ -25,13 +25,25 @@
                 <StackPanel Orientation="Horizontal">
                     <ComboBox ItemsSource="{Binding Db.Employees.Local}" DisplayMemberPath="Value" 
                              SelectedItem="{Binding TempTemporaryPassIssued, ValidatesOnDataErrors=True}" MinWidth="80"></ComboBox>
-                    <Button  Style="{StaticResource ResourceKey=EditTamplateButtom}" 
-                             Command="{Binding TempTemporaryPassIssued.DbTableMenage.EditValue}"
+                    <Button  Command="{Binding TempTemporaryPassIssued.DbTableMenage.EditValue}"
                              CommandParameter="{Binding}">
+                        <Button.Style>
+                            <Style BasedOn="{StaticResource ResourceKey=EditTamplateButtom}" TargetType="Button">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding TempTemporaryPassIssued}" Value="{x:Null}">
+                                        <Setter Property="IsEnabled" Value="False" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
                     </Button>
-                    <Button  Style="{StaticResource ResourceKey=NewItemButtonTemplate}"
+                    <Button  
                              Command="{Binding TempTemporaryPassIssued.DbTableMenage.AddNewValue}"
                              CommandParameter="{Binding}">
+                        <Button.Style>
+                            <Style BasedOn="{StaticResource ResourceKey=NewItemButtonTemplate}" TargetType="Button">
+                            </Style>
+                        </Button.Style>
                     </Button>
                     <Button  Command="{Binding ShowShootingAllowedExtendedView}"                                          
                              Style="{StaticResource ResourceKey=ExpandButtomTemplate}"></Button>

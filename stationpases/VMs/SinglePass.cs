@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace stationpases.Model
 {
-    public class SinglePass : VMContext, INotifyPropertyChanged, IReadyForDBMenage
+    public class SinglePass : VMContext, INotifyPropertyChanged, IReadyForDBMenage, IDataErrorInfo
     {
         int id;
         DateTime? dateOfIssue;
@@ -19,6 +19,7 @@ namespace stationpases.Model
         string purposeOfIssuance;
         Employee singlePassIssued;
         Employee accompanying;
+        DataErrorInfoTools dataErrorInfoTools;
         Visitor visitor;
 
         IDbTableMenage dbTableMenage;
@@ -28,12 +29,13 @@ namespace stationpases.Model
         string tempPurposeOfIssuance;
         Employee tempSinglePassIssued;
         Employee tempAccompanying;
-        StationDBContext db = MainBDContext.GetRef;
+        StationDBContext db = MainBDContext.GetRef;       
         public StationDBContext Db { get { return db; } }
 
         public SinglePass()
         {
             DbTableMenage = new DbTableMenage<SinglePass>(this);
+            dataErrorInfoTools = new DataErrorInfoTools(this, GetType());
         }
 
         public int Id { get => id; set { id = value; OnPropertyChanged(); } }
@@ -43,13 +45,14 @@ namespace stationpases.Model
         public DateTime? ValidUntil { get => validUntil; set { validUntil = value; OnPropertyChanged(); } }
         [Required, MaxLength(500)]
         public string PurposeOfIssuance { get => purposeOfIssuance; set { purposeOfIssuance = value; OnPropertyChanged(); } }
-        [InverseProperty("SinglePassIssued")]
+        [InverseProperty("SinglePassIssued"), Required]
         public virtual Employee SinglePassIssued { get => singlePassIssued; set { singlePassIssued = value; OnPropertyChanged(); } }
-        [InverseProperty("Accompanying")]
+        [InverseProperty("Accompanying"), Required]
         public virtual Employee Accompanying { get => accompanying; set { accompanying = value; OnPropertyChanged(); } }
         public virtual Visitor Visitor { get => visitor; set { visitor = value; OnPropertyChanged(); } }
         public IDbTableMenage DbTableMenage { get => dbTableMenage; set { dbTableMenage = value; OnPropertyChanged(); } }
-
+        [NotMapped]
+        public Employee EmployeeTools { get; set; } = new Employee();
         [NotMapped]
         public DateTime? TempDateOfIssue { get => tempDateOfIssue; set { tempDateOfIssue = value; OnPropertyChanged(); } }
         [NotMapped]
@@ -114,7 +117,10 @@ namespace stationpases.Model
                           (objCB) => { this.Accompanying = (Employee)objCB; });
                   }));
             }
-        }     
+        }
 
+        public string Error => ((IDataErrorInfo)dataErrorInfoTools).Error;
+
+        public string this[string columnName] => ((IDataErrorInfo)dataErrorInfoTools)[columnName];
     }
 }

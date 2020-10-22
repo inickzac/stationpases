@@ -3,6 +3,7 @@
     using stationpases.VMs;
     using System;
     using System.Data.Entity;
+    using System.Data.Entity.ModelConfiguration.Conventions;
     using System.Linq;
 
     public class StationDBContext : DbContext
@@ -31,7 +32,14 @@
         public DbSet<StationFacility> StationFacilities { get; set; }       
         public DbSet<Access>  Accesses { get; set; }
         public DbSet<ShootingPermission> ShootingPermissions { get; set; }
-    }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
+        }
+
+    }  
 
 
 }
